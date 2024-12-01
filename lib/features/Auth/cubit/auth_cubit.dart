@@ -6,55 +6,55 @@ import 'package:courseup/features/Auth/models/my_user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-part 'auth_cubit_state.dart';
+part 'auth_state.dart';
 
-class AuthCubitCubit extends Cubit<AuthCubitState> {
+class AuthCubit extends Cubit<AuthState> {
   final FirebaseUserRepo firebaseUserRepo;
-  AuthCubitCubit(this.firebaseUserRepo) : super(AuthCubitInitial()) {
+  AuthCubit(this.firebaseUserRepo) : super(AuthInitial()) {
     firebaseUserRepo.user.listen((user) {
       if (user != null) {
-        emit(AuthCubitAuthenticated(user: user));
+        emit(AuthAuthenticated(user: user));
       } else {
-        emit(AuthCubitUnAuthenticated());
+        emit(AuthUnAuthenticated());
       }
     });
   }
 
   Future<void> login(MyUser myUser, String password) async {
-    emit(AuthCubitLoading());
+    emit(AuthLoading());
     final result = await firebaseUserRepo.logIn(myUser, password);
     result.fold((success) async {
       final currentUser = await firebaseUserRepo.user.first;
-      emit(AuthCubitAuthenticated(user: currentUser));
+      emit(AuthAuthenticated(user: currentUser));
     }, (failure) {
-      emit(AuthCubitError(message: failure.exception.toString()));
+      emit(AuthError(message: failure.exception.toString()));
     });
   }
 
   Future<void> signup(MyUser myUser, String password) async {
-    emit(AuthCubitLoading());
+    emit(AuthLoading());
     final result = await firebaseUserRepo.signUp(myUser, password);
     result.fold((success) async {
       final setUserResult = await firebaseUserRepo.setUserData(success.value);
         setUserResult.fold(
           (userSuccess) async{
             final currentUser = await firebaseUserRepo.user.first;
-            emit(AuthCubitAuthenticated(user: currentUser));
+            emit(AuthAuthenticated(user: currentUser));
           } ,
-          (failure) => emit(AuthCubitError(message: failure.exception.toString())),
+          (failure) => emit(AuthError(message: failure.exception.toString())),
         );
     }, (failure) {
-      emit(AuthCubitError(message: failure.exception.toString()));
+      emit(AuthError(message: failure.exception.toString()));
     });
   }
 
   Future<void> logout() async {
-    emit(AuthCubitLoading());
+    emit(AuthLoading());
     final result = await firebaseUserRepo.logout();
     result.fold((success) {
-      emit(AuthCubitUnAuthenticated());
+      emit(AuthUnAuthenticated());
     }, (failure) {
-      emit(AuthCubitError(message: failure.exception.toString()));
+      emit(AuthError(message: failure.exception.toString()));
     });
   }
 }

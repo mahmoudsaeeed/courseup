@@ -1,5 +1,9 @@
-import 'package:flutter/material.dart';
+import 'dart:developer';
 
+import 'package:courseup/features/Auth/cubit/auth_cubit.dart';
+import 'package:courseup/features/Auth/models/my_user.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/my_colors.dart';
 
 class MySignupBtn extends StatelessWidget {
@@ -42,8 +46,15 @@ class MySignupBtn extends StatelessWidget {
         onPressed: () {
           if (formState.currentState!.validate()) {
             debugPrint("validation success");
-
-            //TODO send data to db to store
+            MyUser myUser = MyUser.emptyUser;
+            myUser.copyWith(
+              name: myNameController.text,
+              email: myEmailController.text,
+            );
+            log(myNameController.text);
+            log(myEmailController.text);
+            log(myPasswordController.text);
+            context.read<AuthCubit>().signup(myUser, myPasswordController.text);
           } else {
             debugPrint("Validation error");
           }

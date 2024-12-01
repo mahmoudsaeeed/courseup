@@ -1,5 +1,5 @@
 import 'package:courseup/features/Auth/SignUp/presentation/views/my_signup_view.dart';
-import 'package:courseup/features/Home/presentation/views/my_home_view.dart';
+import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
 import 'package:flutter/material.dart';
 
 class MyRoutes {
@@ -14,7 +14,7 @@ class MyRoutes {
     }
 
     return MaterialPageRoute(
-      builder: (context) => const MyHomeView(),
+      builder: (context) => const AuthPage(),
     );
   }
 }

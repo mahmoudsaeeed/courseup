@@ -1,14 +1,15 @@
 import 'package:courseup/core/my_routes.dart';
-import 'package:courseup/features/Auth/Login/presentation/views/my_login_view.dart';
+import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
+import 'package:courseup/features/Auth/cubit/auth_cubit.dart';
+import 'package:courseup/features/Auth/data/firebase_user_repo.dart';
 import 'package:courseup/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -18,21 +19,24 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return BlocProvider<AuthCubit>(
+      create: (context) => AuthCubit(FirebaseUserRepo()),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
+        ),
+        // onGenerateRoute: (settings) {
+        //   if (settings.name == "login") {
+        //     return MaterialPageRoute(
+        //       builder: (context) => MyLoginView(),
+        //     );
+        //   }
+        // },
+        onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
+        home: const AuthPage(),
       ),
-      // onGenerateRoute: (settings) {
-      //   if (settings.name == "login") {
-      //     return MaterialPageRoute(
-      //       builder: (context) => MyLoginView(),
-      //     );
-      //   }
-      // },
-      onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
-      home: const MyLoginView(),
     );
   }
 }
