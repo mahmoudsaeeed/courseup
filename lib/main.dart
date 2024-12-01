@@ -1,3 +1,5 @@
+import 'package:courseup/core/my_routes.dart';
+import 'package:courseup/features/Auth/Login/presentation/views/my_login_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +18,15 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyWidget(),
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == "login") {
+      //     return MaterialPageRoute(
+      //       builder: (context) => MyLoginView(),
+      //     );
+      //   }
+      // },
+      onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
+      home: const MyLoginView(),
     );
   }
 }
