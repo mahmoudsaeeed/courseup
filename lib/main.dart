@@ -1,7 +1,7 @@
 import 'package:courseup/core/my_routes.dart';
 import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
-import 'package:courseup/features/Auth/data/firebase_user_repo.dart';
+import 'package:courseup/features/Auth/data/my_user_repo_impl.dart';
 import 'package:courseup/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,20 +20,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthCubit>(
-      create: (context) => AuthCubit(FirebaseUserRepo()),
+      create: (context) => AuthCubit(MyUserRepoImpl()),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        // onGenerateRoute: (settings) {
-        //   if (settings.name == "login") {
-        //     return MaterialPageRoute(
-        //       builder: (context) => MyLoginView(),
-        //     );
-        //   }
-        // },
+        
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
         home: const AuthPage(),
       ),
@@ -41,16 +35,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: const Center(
-        child: Text("Tester"),
-      ),
-    );
-  }
-}
