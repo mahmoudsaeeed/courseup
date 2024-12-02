@@ -1,10 +1,10 @@
 import 'dart:developer';
 
-import 'package:courseup/features/Auth/cubit/auth_cubit.dart';
-import 'package:courseup/features/Auth/models/my_user.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/my_colors.dart';
+import '../../../data/models/my_user.dart';
 
 class MySignupBtn extends StatelessWidget {
   const MySignupBtn({

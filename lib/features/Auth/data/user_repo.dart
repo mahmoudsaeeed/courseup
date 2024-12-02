@@ -1,4 +1,4 @@
-import 'package:courseup/features/Auth/models/my_user.dart';
+import 'package:courseup/features/Auth/data/models/my_user.dart';
 import 'package:courseup/features/Auth/shared/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';

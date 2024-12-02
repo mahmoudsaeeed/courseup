@@ -1,7 +1,7 @@
 import 'package:courseup/features/Auth/SignUp/presentation/widgets/my_signup_form.dart';
 import 'package:flutter/material.dart';
 
-import '../../../sharedWidgets/my_form_container.dart';
+import '../../../sharedPresentation/sharedWidgets/my_form_container.dart';
 
 class MySignupView extends StatelessWidget {
   const MySignupView({super.key});

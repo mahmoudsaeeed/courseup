@@ -1,6 +1,6 @@
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_bottom_row_login.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_btn.dart';
-import 'package:courseup/features/Auth/sharedWidgets/my_form_input_field.dart';
+import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_form_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 

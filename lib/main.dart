@@ -1,6 +1,6 @@
 import 'package:courseup/core/my_routes.dart';
 import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
-import 'package:courseup/features/Auth/cubit/auth_cubit.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/Auth/data/firebase_user_repo.dart';
 import 'package:courseup/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';

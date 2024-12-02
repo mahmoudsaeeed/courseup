@@ -2,7 +2,7 @@ import 'package:courseup/features/Auth/SignUp/presentation/widgets/my_signup_btn
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../sharedWidgets/my_form_input_field.dart';
+import '../../../sharedPresentation/sharedWidgets/my_form_input_field.dart';
 
 class MySignupForm extends StatefulWidget {
   const MySignupForm({super.key});

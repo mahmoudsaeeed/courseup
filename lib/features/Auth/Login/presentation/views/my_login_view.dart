@@ -1,5 +1,5 @@
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_form.dart';
-import 'package:courseup/features/Auth/sharedWidgets/my_form_container.dart';
+import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_form_container.dart';
 import 'package:flutter/material.dart';
 
 class MyLoginView extends StatelessWidget {
