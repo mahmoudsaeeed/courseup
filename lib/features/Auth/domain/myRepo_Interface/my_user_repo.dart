@@ -5,8 +5,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class MyUserRepo {
   Stream<User?> get user;
-  Future<Either<Success<MyUser>, Failure>> signUp(MyUser myUser, String password);
-  Future<Either<Success<String>, Failure>> logIn(MyUser myUser, String password);
+  Future<Either<Success<MyUser>, Failure>> signUp(
+      MyUser myUser, String password);
+  Future<Either<Success<String>, Failure>> login(
+      MyUser myUser, String password);
   Future<Either<Success<String>, Failure>> setUserData(MyUser myUser);
   Future<Either<Success<String>, Failure>> logout();
 }

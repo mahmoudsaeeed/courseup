@@ -15,6 +15,8 @@ class AuthPage extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.message)),
           );
+
+          debugPrint("runtime type : ${state.runtimeType}");
         }
       },
       builder: (context, state) {

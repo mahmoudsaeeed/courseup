@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:courseup/features/Auth/data/my_user_repo.dart';
+import 'package:courseup/features/Auth/domain/myRepo_Interface/my_user_repo.dart';
 import 'package:courseup/features/Auth/data/models/my_user.dart';
 import 'package:courseup/features/Auth/shared/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class MyUserRepoImpl implements MyUserRepo {
   final FirebaseAuth _firebaseAuth;
@@ -18,7 +19,7 @@ class MyUserRepoImpl implements MyUserRepo {
   }
 
   @override
-  Future<Either<Success<String>, Failure>> logIn(
+  Future<Either<Success<String>, Failure>> login(
       MyUser myUser, String password) async {
     try {
       await _firebaseAuth.signInWithEmailAndPassword(
@@ -37,6 +38,8 @@ class MyUserRepoImpl implements MyUserRepo {
       await usersCollection
           .doc(myUser.userId)
           .set(myUser.toEntity().toDocument());
+                debugPrint("my user repo iml | setUserData success");
+
       return left(Success(value: 'User modified successfully'));
     } catch (e) {
       return right(Failure(exception: e));
@@ -47,14 +50,19 @@ class MyUserRepoImpl implements MyUserRepo {
   Future<Either<Success<MyUser>, Failure>> signUp(
       MyUser myUser, String password) async {
     try {
+      debugPrint("email = ${myUser.email} \npassword = ${password}");
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: myUser.email,
         password: password,
       );
+      debugPrint("my user repo iml | create success");
       myUser = myUser.copyWith(userId: user.user!.uid);
       return left(Success(value: myUser));
     } catch (e) {
+            debugPrint("my user repo iml | create failed");
+
       return right(Failure(exception: e));
+
     }
   }
 

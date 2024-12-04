@@ -46,15 +46,22 @@ class MySignupBtn extends StatelessWidget {
         onPressed: () {
           if (formState.currentState!.validate()) {
             debugPrint("validation success");
-            MyUser myUser = MyUser.emptyUser;
-            myUser.copyWith(
+            MyUser myUser = MyUser();
+
+            myUser = myUser.copyWith(
               name: myNameController.text,
               email: myEmailController.text,
             );
             log(myNameController.text);
             log(myEmailController.text);
             log(myPasswordController.text);
-            context.read<AuthCubit>().signup(myUser, myPasswordController.text);
+
+            BlocProvider.of<AuthCubit>(context).signup(
+              myUser,
+              myPasswordController.text,
+            );
+            debugPrint("email here = ${myUser.email}");
+            // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
           } else {
             debugPrint("Validation error");
           }

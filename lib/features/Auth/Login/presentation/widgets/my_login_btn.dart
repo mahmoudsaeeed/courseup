@@ -37,7 +37,12 @@ class MyLoginBtn extends StatelessWidget {
         onPressed: () {
           if (formState.currentState!.validate()) {
             debugPrint("validation success");
-            //TODO check if data is correct and stored 
+            // MyUser myUser = MyUser(email: myEmail.text , );
+            // BlocProvider.of<AuthCubit>(context).login(
+            //   myUser, //!  change to myEmail not myUser
+            //   myPassword.text,
+            // );
+            //TODO check if data is correct and stored
             //TODO navigate to home page
           } else {
             debugPrint("Validation error");
