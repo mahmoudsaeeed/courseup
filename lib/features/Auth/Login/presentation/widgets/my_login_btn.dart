@@ -30,7 +30,7 @@ class MyLoginBtn extends StatelessWidget {
             ),
           ),
           backgroundColor: WidgetStatePropertyAll(
-            MyColors.myPrimaryKey,
+            MyColors.myPrimaryColor,
           ),
           alignment: Alignment.center,
         ),

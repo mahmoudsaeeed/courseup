@@ -28,7 +28,7 @@ class MyBottomRowLogin extends StatelessWidget {
           },
           child: Text(
             "Register",
-            style: TextStyle(color: MyColors.myPrimaryKey),
+            style: TextStyle(color: MyColors.myPrimaryColor),
           ),
         ),
       ],

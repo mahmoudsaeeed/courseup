@@ -1,3 +1,4 @@
+import 'package:courseup/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingSkipButton extends StatelessWidget {
@@ -13,6 +14,7 @@ class OnboardingSkipButton extends StatelessWidget {
                 controller.jumpToPage(2);
               },
               child: const Text('Skip'),
+              style: TextButton.styleFrom(foregroundColor: MyColors.myPrimaryColor),
             ),
           );
   }

@@ -1,3 +1,4 @@
+import 'package:courseup/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -13,7 +14,7 @@ class OnboardingSmoothPageIndicator extends StatelessWidget {
             child: SmoothPageIndicator(
               controller: controller,
               count: 3,
-              effect: const ExpandingDotsEffect(dotHeight: 6, activeDotColor: Colors.indigo),
+              effect: ExpandingDotsEffect(dotHeight: 4, activeDotColor: MyColors.myPrimaryColor,),
             ),
           );
   }

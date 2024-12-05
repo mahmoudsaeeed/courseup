@@ -1,4 +1,5 @@
 import 'package:courseup/core/constants.dart';
+import 'package:courseup/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingNextButton extends StatelessWidget {
@@ -14,7 +15,7 @@ class OnboardingNextButton extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 foregroundColor: Colors.white,
-                backgroundColor: Colors.indigo,
+                backgroundColor: MyColors.myPrimaryColor,
                 padding: const EdgeInsets.all(15),
               ),
               onPressed: () {
