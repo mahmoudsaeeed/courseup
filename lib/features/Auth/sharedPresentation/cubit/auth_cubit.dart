@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:courseup/features/Auth/data/my_user_repo_impl.dart';
+import 'package:courseup/features/Auth/data/repository/my_user_repo_impl.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
