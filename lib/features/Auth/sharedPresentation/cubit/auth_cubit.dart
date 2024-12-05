@@ -25,18 +25,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login(MyUser myUser, String password) async {
     emit(AuthLoading());
+    //TODO (mahmoud) result either success msg or failure
     final result = await firebaseUserRepo.login(myUser, password);
-    /*
-     ! instead of create login in repo
-     ? write login code here
-    */
+
     result.fold((success) async {
-      // final currentUser = await firebaseUserRepo.user.first;
+      final currentUser = await firebaseUserRepo.user.first;
       /*
       ^ mahmoud (code)
-      final 
-       */
+      
       final currentUser = FirebaseAuth.instance.currentUser;
+       */
       emit(AuthAuthenticated(user: currentUser));
     }, (failure) {
       emit(AuthError(message: failure.exception.toString()));

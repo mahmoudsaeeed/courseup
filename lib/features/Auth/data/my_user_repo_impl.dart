@@ -1,17 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:courseup/features/Auth/domain/myRepo_Interface/my_user_repo.dart';
-import 'package:courseup/features/Auth/data/models/my_user.dart';
-import 'package:courseup/features/Auth/shared/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'package:courseup/features/Auth/data/models/my_user.dart';
+import 'package:courseup/features/Auth/domain/myRepo_Interface/my_user_repo.dart';
+import 'package:courseup/features/Auth/shared/error/result.dart';
+
 class MyUserRepoImpl implements MyUserRepo {
   final FirebaseAuth _firebaseAuth;
+
   final usersCollection = FirebaseFirestore.instance.collection('users');
   MyUserRepoImpl({
     FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
+
 
   @override
   Stream<User?> get user {
@@ -22,6 +26,7 @@ class MyUserRepoImpl implements MyUserRepo {
   Future<Either<Success<String>, Failure>> login(
       MyUser myUser, String password) async {
     try {
+      //TODO (mahmoud)  why we not save the result in credential var
       await _firebaseAuth.signInWithEmailAndPassword(
         email: myUser.email,
         password: password,
