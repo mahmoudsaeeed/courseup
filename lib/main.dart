@@ -2,6 +2,7 @@ import 'package:courseup/core/my_routes.dart';
 import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/Auth/data/repository/my_user_repo_impl.dart';
+import 'package:courseup/features/onboarding/onboarding_screen.dart';
 import 'package:courseup/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
         ),
         
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
-        home: const AuthPage(),
+        home: const OnboardingScreen(),
       ),
     );
   }
