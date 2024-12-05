@@ -19,20 +19,19 @@ class MyLoginBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       // margin: const EdgeInsets.all(5),
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width,
       height: 50,
 
       child: ElevatedButton(
-        style: ButtonStyle(
-          padding: const WidgetStatePropertyAll(
-            EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: MyColors.secondaryColor, // Button color
+          alignment: Alignment.center, // Center-align the content
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(10), // Adjust the radius to your needs
           ),
-          backgroundColor: WidgetStatePropertyAll(
-            MyColors.myPrimaryKey,
-          ),
-          alignment: Alignment.center,
+          padding: const EdgeInsets.symmetric(
+              vertical: 16.0), // Adds height to the button
         ),
         onPressed: () {
           if (formState.currentState!.validate()) {
