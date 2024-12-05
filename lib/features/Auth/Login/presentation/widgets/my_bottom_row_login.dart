@@ -1,5 +1,6 @@
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
+import 'package:courseup/test.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomRowLogin extends StatelessWidget {
@@ -13,12 +14,7 @@ class MyBottomRowLogin extends StatelessWidget {
       children: [
         TextButton(
           onPressed: () {
-            showDialog(
-              context: context,
-              builder: (context) => const AlertDialog(
-                title: Text("لسه مشتغلتش"),
-              ),
-            );
+            Test.showNotWorkMsg(context);
           },
           child: const Text("Forget password"),
         ),

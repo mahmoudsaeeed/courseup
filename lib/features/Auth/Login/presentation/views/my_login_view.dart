@@ -11,10 +11,10 @@ class MyLoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: SingleChildScrollView(
-            child: Column(
-                  children: [
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
             const SizedBox(
               height: 15,
             ),
@@ -24,11 +24,17 @@ class MyLoginView extends StatelessWidget {
                 image: AssetImage(appLogo),
               ),
             ),
-            Text('Login', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: MyColors.myPrimaryColor),),
-            MyLoginForm(),
-                  ],
-                ),
-          ),
-        ));
+            Text(
+              'Login',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                  color: MyColors.myPrimaryColor,),
+            ),
+            const MyLoginForm(),
+          ],
+        ),
+      ),
+    ));
   }
 }

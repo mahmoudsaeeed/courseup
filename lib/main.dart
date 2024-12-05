@@ -1,4 +1,5 @@
 import 'package:courseup/core/my_routes.dart';
+
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/Auth/data/repository/my_user_repo_impl.dart';
 import 'package:courseup/features/Auth/splash_screen/splash_screen.dart';
@@ -28,11 +29,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        
+
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
+
         home: const SplashScreen(),
       ),
     );
   }
 }
-

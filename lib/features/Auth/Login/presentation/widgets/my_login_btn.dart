@@ -1,3 +1,4 @@
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -41,6 +42,7 @@ class MyLoginBtn extends StatelessWidget {
             //   myUser, //!  change to myEmail not myUser
             //   myPassword.text,
             // );
+            Navigator.pushReplacementNamed(context, MyPages.myViewProfilePage);
             //TODO check if data is correct and stored
             //TODO navigate to home page
           } else {
