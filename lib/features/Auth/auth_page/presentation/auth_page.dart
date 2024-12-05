@@ -25,7 +25,7 @@ class AuthPage extends StatelessWidget {
         } else if (state is AuthLoading) {
           return const Center(child: CircularProgressIndicator());
         } else if (state is AuthAuthenticated) {
-          return MyHomeView(username: state.user!.uid);
+          return MyHomeView(userId: state.user!.uid);
         } else {
           return const Center(child: Text('Unknown Error'),); // Fallback for unexpected states
         }
