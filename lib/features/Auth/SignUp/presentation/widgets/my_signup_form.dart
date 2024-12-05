@@ -85,7 +85,7 @@ class _MySignupFormState extends State<MySignupForm> {
                 }
               },
             ),
-            const Gap(60),
+            const Gap(20),
             MySignupBtn(
               formState: _formState,
               myButtonText: "SignUp",

@@ -24,14 +24,14 @@ class MyLoginBtn extends StatelessWidget {
 
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: MyColors.secondaryColor, // Button color
-          alignment: Alignment.center, // Center-align the content
+          backgroundColor: MyColors.secondaryColor,
+          alignment: Alignment.center,
           shape: RoundedRectangleBorder(
             borderRadius:
-                BorderRadius.circular(10), // Adjust the radius to your needs
+                BorderRadius.circular(10),
           ),
           padding: const EdgeInsets.symmetric(
-              vertical: 16.0), // Adds height to the button
+              vertical: 16.0),
         ),
         onPressed: () {
           if (formState.currentState!.validate()) {

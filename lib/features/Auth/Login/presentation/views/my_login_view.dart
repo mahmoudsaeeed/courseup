@@ -1,7 +1,7 @@
 import 'package:courseup/constants/images.dart';
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_form.dart';
-import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_form_container.dart';
 import 'package:flutter/material.dart';
 
 class MyLoginView extends StatelessWidget {
@@ -11,10 +11,10 @@ class MyLoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: SingleChildScrollView(
-            child: Column(
-                  children: [
+      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
             const SizedBox(
               height: 15,
             ),
@@ -24,11 +24,41 @@ class MyLoginView extends StatelessWidget {
                 image: AssetImage(appLogo),
               ),
             ),
-            Text('Login', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0, color: MyColors.myPrimaryColor),),
-            MyLoginForm(),
-                  ],
+            Text(
+              'Login',
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30.0,
+                  color: MyColors.myPrimaryColor),
+            ),
+            const MyLoginForm(),
+            const SizedBox(
+              height: 60,
+            ),
+            const Row(
+              children: [
+                Text(
+                  'Don\'t have an account yet?',
                 ),
-          ),
-        ));
+              ],
+            ),
+            Row(
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyPages.mySignupPage);
+                  },
+                  child: Text(
+                    "Register",
+                    style: TextStyle(color: MyColors.myPrimaryColor),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    ));
   }
 }
