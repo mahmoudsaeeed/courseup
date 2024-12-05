@@ -39,7 +39,7 @@ class MySignupBtn extends StatelessWidget {
             ),
           ),
           backgroundColor: WidgetStatePropertyAll(
-            MyColors.myPrimaryKey,
+            MyColors.myPrimaryColor,
           ),
           alignment: Alignment.center,
         ),
