@@ -7,12 +7,14 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(25),
       child: Column(
         children: [
-          Image(image: AssetImage(image)),
-          Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18.0),),
-          const SizedBox(height: 15,),
+          const SizedBox(height: 60,),
+          Image(image: AssetImage(image), fit: BoxFit.cover,),
+          const SizedBox(height: 20,),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),),
+          const SizedBox(height: 30,),
           Text(subtitle, style: const TextStyle(fontSize: 16)),
         ],
       ),
