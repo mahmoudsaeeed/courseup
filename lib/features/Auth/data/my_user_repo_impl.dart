@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-
 import 'package:courseup/features/Auth/data/models/my_user.dart';
 import 'package:courseup/features/Auth/domain/myRepo_Interface/my_user_repo.dart';
 import 'package:courseup/features/Auth/shared/error/result.dart';
+import 'package:dartz/dartz.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 class MyUserRepoImpl implements MyUserRepo {
   final FirebaseAuth _firebaseAuth;
@@ -55,7 +54,7 @@ class MyUserRepoImpl implements MyUserRepo {
   Future<Either<Success<MyUser>, Failure>> signUp(
       MyUser myUser, String password) async {
     try {
-      debugPrint("email = ${myUser.email} \npassword = ${password}");
+      debugPrint("email = ${myUser.email} \npassword = $password");
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: myUser.email,
         password: password,

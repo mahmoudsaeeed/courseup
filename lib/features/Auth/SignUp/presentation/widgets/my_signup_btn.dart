@@ -46,8 +46,8 @@ class MySignupBtn extends StatelessWidget {
         onPressed: () {
           if (formState.currentState!.validate()) {
             debugPrint("validation success");
-            MyUser myUser = MyUser();
 
+            MyUser myUser = MyUser.emptyUser;
             myUser = myUser.copyWith(
               name: myNameController.text,
               email: myEmailController.text,
