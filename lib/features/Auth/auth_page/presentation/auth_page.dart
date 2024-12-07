@@ -1,6 +1,8 @@
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/Login/presentation/views/my_login_view.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/Home/presentation/views/my_home_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,23 +15,37 @@ class AuthPage extends StatelessWidget {
       listener: (context, state) {
         if (state is AuthError) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
+            SnackBar(
+              content: Text(state.message),
+              backgroundColor: Colors.red,
+            ),
           );
-
-          debugPrint("runtime type : ${state.runtimeType}");
         }
       },
       builder: (context, state) {
-        if (state is AuthInitial || state is AuthUnAuthenticated) {
-          return const MyLoginView();
-        } else if (state is AuthLoading) {
-          return const Center(child: CircularProgressIndicator());
+        if (state is AuthLoading) {
+          return const Scaffold(
+              body: Center(child: CircularProgressIndicator()));
         } else if (state is AuthAuthenticated) {
-          return MyHomeView(userId: state.user!.uid);
+          return MyHomeView(
+            user: state.user!,
+          );
+        } else if (state is AuthUnAuthenticated) {
+          return const MyLoginView();
         } else {
-          return const Center(child: Text('Unknown Error'),); // Fallback for unexpected states
+          return const MyLoginView();
         }
       },
     );
+
+    // return BlocListener<AuthCubit, AuthState>(
+    //   listener: (context, state) {
+    //     if (state is AuthAuthenticated) {
+    //       Navigator.pushReplacementNamed(context, MyPages.myHomePage);
+    //     } else if (state is AuthError) {
+    //       Navigator.pushReplacementNamed(context, MyPages.myLoginPage);
+    //     }
+    //   },
+    // );
   }
 }

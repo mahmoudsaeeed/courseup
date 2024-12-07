@@ -15,6 +15,8 @@ class MyUserRepoImpl implements MyUserRepo {
     FirebaseAuth? firebaseAuth,
   }) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
+  @override
+  User? get currentUser => _firebaseAuth.currentUser;
 
   @override
   Stream<User?> get user {
@@ -23,11 +25,11 @@ class MyUserRepoImpl implements MyUserRepo {
 
   @override
   Future<Either<Success<String>, Failure>> login(
-      MyUser myUser, String password) async {
+      String email, String password) async {
     try {
       //TODO (mahmoud)  why we not save the result in credential var
       await _firebaseAuth.signInWithEmailAndPassword(
-        email: myUser.email,
+        email: email,
         password: password,
       );
       return left(Success(value: 'Logged in successfully'));
@@ -73,8 +75,18 @@ class MyUserRepoImpl implements MyUserRepo {
   @override
   Future<Either<Success<String>, Failure>> logout() async {
     try {
-      await FirebaseAuth.instance.signOut();
+      await _firebaseAuth.signOut();
       return left(Success(value: 'Logged out successfully'));
+    } catch (e) {
+      return right(Failure(exception: e));
+    }
+  }
+  
+  @override
+  Future<Either<Success<String>, Failure>> resetPassword(MyUser myUser) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: myUser.email);
+      return left(Success(value: 'Reset email sent successfully'));
     } catch (e) {
       return right(Failure(exception: e));
     }

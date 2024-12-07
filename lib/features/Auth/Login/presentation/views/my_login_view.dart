@@ -1,8 +1,11 @@
 import 'package:courseup/constants/images.dart';
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_form.dart';
-import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_form_container.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 
 class MyLoginView extends StatelessWidget {
   const MyLoginView({super.key});
@@ -15,9 +18,7 @@ class MyLoginView extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
-              height: 15,
-            ),
+            const Gap(15),
             const SizedBox(
               height: 250,
               child: Image(
@@ -29,9 +30,33 @@ class MyLoginView extends StatelessWidget {
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 30.0,
-                  color: MyColors.myPrimaryColor,),
+                  color: MyColors.myPrimaryColor),
             ),
             const MyLoginForm(),
+            const SizedBox(
+              height: 60,
+            ),
+            const Row(
+              children: [
+                Text(
+                  'Don\'t have an account yet?',
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                TextButton(
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  onPressed: () {
+                    Navigator.pushNamed(context, MyPages.mySignupPage);
+                  },
+                  child: Text(
+                    "Register",
+                    style: TextStyle(color: MyColors.myPrimaryColor),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ),

@@ -10,6 +10,7 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final MyUserRepoImpl firebaseUserRepo;
+
   AuthCubit(this.firebaseUserRepo) : super(AuthInitial()) {
     firebaseUserRepo.user.listen((user) {
       if (user != null) {
@@ -17,24 +18,22 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthAuthenticated(user: user));
       } else {
         debugPrint("authCubit | user not authed");
-
         emit(AuthUnAuthenticated());
       }
+    }).onError((error) {
+      emit(AuthError(message: error.toString()));
     });
   }
 
-  Future<void> login(MyUser myUser, String password) async {
+  Future<void> login(String email, String password) async {
     emit(AuthLoading());
     //TODO (mahmoud) result either success msg or failure
-    final result = await firebaseUserRepo.login(myUser, password);
-
+    final result = await firebaseUserRepo.login(email, password);
+    debugPrint("result = ${result.isLeft()}");
     result.fold((success) async {
-      final currentUser = await firebaseUserRepo.user.first;
-      /*
-      ^ mahmoud (code)
-      
-      final currentUser = FirebaseAuth.instance.currentUser;
-       */
+      //can cause problems
+      final currentUser = firebaseUserRepo.currentUser;
+
       emit(AuthAuthenticated(user: currentUser));
     }, (failure) {
       emit(AuthError(message: failure.exception.toString()));
@@ -64,6 +63,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> logout() async {
     emit(AuthLoading());
     final result = await firebaseUserRepo.logout();
+
     result.fold((success) {
       emit(AuthUnAuthenticated());
     }, (failure) {

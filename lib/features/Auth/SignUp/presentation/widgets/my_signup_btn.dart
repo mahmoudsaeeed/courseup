@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,21 +28,16 @@ class MySignupBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      // margin: const EdgeInsets.all(5),
-      width: MediaQuery.of(context).size.width - 50,
+      width: MediaQuery.of(context).size.width,
       height: 50,
-
       child: ElevatedButton(
-        style: ButtonStyle(
-          padding: const WidgetStatePropertyAll(
-            EdgeInsets.symmetric(
-              horizontal: 20,
-            ),
-          ),
-          backgroundColor: WidgetStatePropertyAll(
-            MyColors.myPrimaryColor,
-          ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: MyColors.secondaryColor,
           alignment: Alignment.center,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
         ),
         onPressed: () {
           if (formState.currentState!.validate()) {
@@ -62,6 +58,7 @@ class MySignupBtn extends StatelessWidget {
               myUser,
               myPasswordController.text,
             );
+            Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);
             debugPrint("email here = ${myUser.email}");
             // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
           } else {

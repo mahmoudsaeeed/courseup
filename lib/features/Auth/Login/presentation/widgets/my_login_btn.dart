@@ -1,6 +1,11 @@
+
+import 'dart:developer';
+
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyLoginBtn extends StatelessWidget {
   const MyLoginBtn({
@@ -22,17 +27,15 @@ class MyLoginBtn extends StatelessWidget {
       // margin: const EdgeInsets.all(5),
       width: MediaQuery.of(context).size.width,
       height: 50,
-
+    
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: MyColors.secondaryColor, // Button color
-          alignment: Alignment.center, // Center-align the content
+          backgroundColor: MyColors.secondaryColor,
+          alignment: Alignment.center,
           shape: RoundedRectangleBorder(
-            borderRadius:
-                BorderRadius.circular(10), // Adjust the radius to your needs
+            borderRadius: BorderRadius.circular(10),
           ),
-          padding: const EdgeInsets.symmetric(
-              vertical: 16.0), // Adds height to the button
+          padding: const EdgeInsets.symmetric(vertical: 16.0),
         ),
         onPressed: () {
           if (formState.currentState!.validate()) {
@@ -42,9 +45,13 @@ class MyLoginBtn extends StatelessWidget {
             //   myUser, //!  change to myEmail not myUser
             //   myPassword.text,
             // );
-            Navigator.pushReplacementNamed(context, MyPages.myViewProfilePage);
             //TODO check if data is correct and stored
             //TODO navigate to home page
+            log(myEmail.text);
+            log(myPassword.text);
+              BlocProvider.of<AuthCubit>(context)
+                .login(myEmail.text.trim(), myPassword.text.trim());
+            
           } else {
             debugPrint("Validation error");
           }

@@ -24,14 +24,9 @@ class MyRoutes {
         {
           return MaterialPageRoute(builder: (context) => OnboardingScreen());
         }
-      case MyPages.myEditProfilePage:
+      case MyPages.myAuthPage:
         {
-          return MaterialPageRoute(
-              builder: (context) => const MyEditProfileView());
-        }
-      case MyPages.myViewProfilePage:
-        {
-          return MaterialPageRoute(builder: (context) => const MyViewProfile());
+          return MaterialPageRoute(builder: (context) => const AuthPage());
         }
     }
 

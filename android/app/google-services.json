@@ -12,7 +12,12 @@
           "package_name": "com.courses.app"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "696524850572-3tqtfcv10mdu6m9b08e5c1tpp4mc6gem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyClYkVkhTmnYVeXTcJwWniaOrngWMUcsgs"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696524850572-3tqtfcv10mdu6m9b08e5c1tpp4mc6gem.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "696524850572-2qgjrkngvq38bl9ad049u3gv9i9rsbob.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.courseup"
+              }
+            }
+          ]
         }
       }
     },
@@ -31,7 +48,20 @@
           "package_name": "com.example.courseup"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "696524850572-5qp20cuqv8vmf44gv1t5jq8uhgcapbaq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.courseup",
+            "certificate_hash": "c625fa89b8bf1a52bc3ae1420538ccddfe82a894"
+          }
+        },
+        {
+          "client_id": "696524850572-3tqtfcv10mdu6m9b08e5c1tpp4mc6gem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyClYkVkhTmnYVeXTcJwWniaOrngWMUcsgs"
@@ -39,7 +69,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "696524850572-3tqtfcv10mdu6m9b08e5c1tpp4mc6gem.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "696524850572-2qgjrkngvq38bl9ad049u3gv9i9rsbob.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.courseup"
+              }
+            }
+          ]
         }
       }
     }

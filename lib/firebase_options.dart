@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '696524850572',
     projectId: 'courses-platform-91b70',
     storageBucket: 'courses-platform-91b70.firebasestorage.app',
+    androidClientId: '696524850572-5qp20cuqv8vmf44gv1t5jq8uhgcapbaq.apps.googleusercontent.com',
+    iosClientId: '696524850572-2qgjrkngvq38bl9ad049u3gv9i9rsbob.apps.googleusercontent.com',
     iosBundleId: 'com.example.courseup',
   );
+
 }
