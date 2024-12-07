@@ -2,9 +2,7 @@ import 'package:courseup/constants/images.dart';
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_form.dart';
-import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class MyLoginView extends StatelessWidget {

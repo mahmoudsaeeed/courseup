@@ -2,7 +2,6 @@ import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_form.da
 import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_save_btn.dart';
 import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_top_part.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class MyEditProfileView extends StatefulWidget {
   const MyEditProfileView({super.key});
