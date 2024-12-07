@@ -1,5 +1,4 @@
 import 'package:courseup/constants/images.dart';
-import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/SignUp/presentation/widgets/my_signup_form.dart';
 import 'package:flutter/material.dart';

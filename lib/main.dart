@@ -1,14 +1,16 @@
 import 'package:courseup/core/my_routes.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/Auth/data/repository/my_user_repo_impl.dart';
-import 'package:courseup/features/Auth/splash_screen/splash_screen.dart';
+import 'package:courseup/features/splash_screen/splash_screen.dart';
 import 'package:courseup/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: '.env');
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }

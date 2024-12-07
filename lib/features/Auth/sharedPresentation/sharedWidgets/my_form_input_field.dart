@@ -15,12 +15,18 @@ class MyTextFormField extends StatefulWidget {
   final bool isSecret;
   final String myHint;
 
+
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
 }
 
 class _MyTextFormFieldState extends State<MyTextFormField> {
-  bool isDisplayed = false;
+  late bool isObsecure;
+  @override
+  void initState() {
+    super.initState();
+      isObsecure = widget.isSecret;
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,8 +34,35 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
       child: TextFormField(
         controller: widget.myController,
         validator: widget.myValidator,
-        obscureText: isDisplayed,
-        decoration: InputDecoration(
+        obscureText: isObsecure,
+        decoration: widget.isSecret ? InputDecoration(
+          suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
+            onPressed: () => setState(() {
+              isObsecure = !isObsecure;
+            }),
+            icon: isObsecure
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off),
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+        ),
+          hintText: widget.myHint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 1,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: MyColors.secondaryColor,
+              width: 2,
+            ),
+          ),
+        ) : InputDecoration(
           hintText: widget.myHint,
           hintStyle: const TextStyle(color: Colors.grey),
           enabledBorder: const UnderlineInputBorder(

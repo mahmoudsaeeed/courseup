@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,6 +56,7 @@ class MySignupBtn extends StatelessWidget {
               myUser,
               myPasswordController.text,
             );
+            Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);
             debugPrint("email here = ${myUser.email}");
             // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
           } else {

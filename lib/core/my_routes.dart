@@ -22,6 +22,10 @@ class MyRoutes {
         {
           return MaterialPageRoute(builder: (context) => OnboardingScreen());
         }
+      case MyPages.myAuthPage:
+        {
+          return MaterialPageRoute(builder: (context) => const AuthPage());
+        }
     }
 
     return MaterialPageRoute(

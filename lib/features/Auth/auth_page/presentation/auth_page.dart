@@ -9,27 +9,19 @@ class AuthPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthCubit, AuthState>(
-      listener: (context, state) {
-        if (state is AuthError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
-          );
 
-          debugPrint("runtime type : ${state.runtimeType}");
-        }
-      },
-      builder: (context, state) {
-        if (state is AuthInitial || state is AuthUnAuthenticated) {
-          return const MyLoginView();
-        } else if (state is AuthLoading) {
-          return const Center(child: CircularProgressIndicator());
-        } else if (state is AuthAuthenticated) {
-          return MyHomeView(username: state.user!.uid);
-        } else {
-          return const Center(child: Text('Unknown Error'),); // Fallback for unexpected states
-        }
-      },
+    return BlocBuilder<AuthCubit, AuthState>(
+        builder: (context, state) {
+          if (state is AuthLoading) {
+            return const Scaffold(body: Center(child: CircularProgressIndicator()));
+          } else if (state is AuthAuthenticated) {
+            return MyHomeView(user: state.user!,);
+          } else if (state is AuthUnAuthenticated) {
+            return const MyLoginView();
+          } else {
+            return Container();
+          }
+        },
     );
   }
 }
