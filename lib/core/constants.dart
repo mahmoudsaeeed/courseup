@@ -7,6 +7,9 @@ class MyPages {
   static const String myOnboardingScreen = "onboarding_screen";
   static const String myHomePage = 'home_page';
   static const String myAuthPage = 'auth_page';
+  static const String myViewPage = "view_profile";
+  static const String myUpdateProfilePage = "update_profile";
+  static const String myResetPassword = "resetPassword";
   // static const String myHomePage = "/";
 }
 

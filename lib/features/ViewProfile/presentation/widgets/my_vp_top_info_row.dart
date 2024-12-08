@@ -36,7 +36,7 @@ class MyVpTopInfoRow extends StatelessWidget {
             onPressed: () {
               debugPrint(
                   "--------  Navigate to edit profile page  --------------");
-              Navigator.pushNamed(context, "editProfile");
+              Navigator.pushNamed(context, MyPages.myUpdateProfilePage);
             },
             icon: const Icon(Icons.border_color_rounded),
           )

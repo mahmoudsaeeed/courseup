@@ -49,7 +49,7 @@ class MyLoginBtn extends StatelessWidget {
             log(myEmail.text);
             log(myPassword.text);
               BlocProvider.of<AuthCubit>(context)
-                .login(myEmail.text.trim(), myPassword.text.trim());
+                .login(myEmail.text.trim(), myPassword.text);
             
           } else {
             debugPrint("Validation error");

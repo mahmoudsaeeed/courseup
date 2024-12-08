@@ -1,8 +1,9 @@
 import 'package:courseup/features/Auth/SignUp/presentation/widgets/my_signup_btn.dart';
+import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_password_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../sharedPresentation/sharedWidgets/my_form_input_field.dart';
+import '../../../sharedPresentation/sharedWidgets/my_text_form_field.dart';
 
 class MySignupForm extends StatefulWidget {
   const MySignupForm({super.key});
@@ -61,45 +62,14 @@ class _MySignupFormState extends State<MySignupForm> {
                 }
               },
             ),
-            MyTextFormField(
-              myController: myPasswordController,
-              myHint: "Password",
-              isSecret: true,
-              myValidator: (input) {
-                RegExp passwordRegex = RegExp(
-                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-
-                if (input!.isEmpty) {
-                  return "please Enter your password";
-                } else if (input.length < 4) {
-                  return "password should be more than 3 char";
-                } else if (!passwordRegex.hasMatch(input)) {
-                  return "Weak Password";
-                } else {
-                  return null;
-                }
-              },
+            MyPasswordTextForm(
+              myPassword: myPasswordController,
+              checkPassword: true,
             ),
-            MyTextFormField(
-              myController: mySecondPasswordController,
-              myHint: "repeat Password",
-              isSecret: true,
-              myValidator: (input) {
-                RegExp passwordRegex = RegExp(
-                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-
-                if (input!.isEmpty) {
-                  return "please Enter your password";
-                } else if (input.length < 4) {
-                  return "password should be more than 3 char";
-                } else if (!passwordRegex.hasMatch(input)) {
-                  return "Weak Password";
-                } else if (input != myPasswordController.text.trim()) {
-                  return "Not matched password";
-                } else {
-                  return null;
-                }
-              },
+            MyPasswordTextForm(
+              myPassword: mySecondPasswordController,
+              myHint: "Repeat password",
+              checkPassword: true,
             ),
             const Gap(20),
             MySignupBtn(
