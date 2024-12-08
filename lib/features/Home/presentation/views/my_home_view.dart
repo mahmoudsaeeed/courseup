@@ -1,11 +1,11 @@
 import 'package:courseup/core/constants.dart';
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyHomeView extends StatelessWidget {
-  final User user;
+  final MyUserEntity user;
   const MyHomeView({super.key, required this.user});
 
   @override
@@ -22,7 +22,7 @@ class MyHomeView extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text("hello, ${user.email}"),
+        child: Text("hello, ${user.name}"),
       ),
     );
   }
