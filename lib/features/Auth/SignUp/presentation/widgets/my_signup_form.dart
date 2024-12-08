@@ -66,8 +66,15 @@ class _MySignupFormState extends State<MySignupForm> {
               myHint: "Password",
               isSecret: true,
               myValidator: (input) {
+                RegExp passwordRegex = RegExp(
+                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+
                 if (input!.isEmpty) {
                   return "please Enter your password";
+                } else if (input.length < 4) {
+                  return "password should be more than 3 char";
+                } else if (!passwordRegex.hasMatch(input)) {
+                  return "Weak Password";
                 } else {
                   return null;
                 }
@@ -78,14 +85,23 @@ class _MySignupFormState extends State<MySignupForm> {
               myHint: "repeat Password",
               isSecret: true,
               myValidator: (input) {
+                RegExp passwordRegex = RegExp(
+                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
+
                 if (input!.isEmpty) {
                   return "please Enter your password";
+                } else if (input.length < 4) {
+                  return "password should be more than 3 char";
+                } else if (!passwordRegex.hasMatch(input)) {
+                  return "Weak Password";
+                } else if (input != myPasswordController.text.trim()) {
+                  return "Not matched password";
                 } else {
                   return null;
                 }
               },
             ),
-            const Gap(60),
+            const Gap(20),
             MySignupBtn(
               formState: _formState,
               myButtonText: "SignUp",

@@ -12,11 +12,11 @@ class MyUser extends Equatable {
     this.name = '',
   });
 
-  static const emptyUser = MyUser(
-    userId: '',
-    email: '',
-    name: '',
-  );
+  // static const emptyUser = MyUser(
+  //   userId: '',
+  //   email: '',
+  //   name: '',
+  // );
 
   MyUser copyWith({
     String? userId,

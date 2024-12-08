@@ -1,3 +1,4 @@
+import 'package:courseup/core/utils/my_colors.dart';
 import 'package:flutter/material.dart';
 
 class MyTextFormField extends StatefulWidget {
@@ -14,64 +15,73 @@ class MyTextFormField extends StatefulWidget {
   final bool isSecret;
   final String myHint;
 
+
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
 }
 
 class _MyTextFormFieldState extends State<MyTextFormField> {
-  bool isDisplayed = false;
+  late bool isObsecure;
+  @override
+  void initState() {
+    super.initState();
+      isObsecure = widget.isSecret;
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
-          boxShadow: [
-            BoxShadow(
-              offset: Offset(0, 5),
-              blurRadius: 4,
-              spreadRadius: .01,
-              color: Colors.black,
-            ),
-          ],
-        ),
-        child: TextFormField(
-          controller: widget.myController,
-          validator: widget.myValidator,
-          obscureText: isDisplayed,
-          decoration: InputDecoration(
-            enabled: true,
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(
-                20,
-              ),
-              gapPadding: 5,
-              borderSide: BorderSide.none,
-            ),
-            isDense: true,
-            hintText: widget.myHint,
-            filled: true,
-            // suffix: widget.isSecret
-            //     ? IconButton(
-            //         padding: const EdgeInsets.all(0),
-            //         visualDensity: VisualDensity.compact,
-            //         style: const ButtonStyle(),
-            //         onPressed: () {
-            //           setState(() {
-            //             isDisplayed = !isDisplayed;
-            //           });
-            //         },
-            //         icon: isDisplayed
-            //             ? const Icon(
-            //                 Icons.lock_outline_rounded,
-            //                 color: Colors.blue,
-            //               )
-            //             : const Icon(Icons.lock_open_rounded),
-            //         color: Colors.red,
-            //       )
-            //     : null,
+      child: TextFormField(
+        controller: widget.myController,
+        validator: widget.myValidator,
+        obscureText: isObsecure,
+        decoration: widget.isSecret ? InputDecoration(
+          suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
+            onPressed: () => setState(() {
+              isObsecure = !isObsecure;
+            }),
+            icon: isObsecure
+                ? const Icon(Icons.visibility)
+                : const Icon(Icons.visibility_off),
+            color: Theme.of(context).colorScheme.secondary,
           ),
+        ),
+          hintText: widget.myHint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 1,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: MyColors.secondaryColor,
+              width: 2,
+            ),
+          ),
+        ) : InputDecoration(
+          hintText: widget.myHint,
+          hintStyle: const TextStyle(color: Colors.grey),
+          enabledBorder: const UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 1,
+            ),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+              color: MyColors.secondaryColor,
+              width: 2,
+            ),
+          ),
+        ),
+        cursorColor: MyColors.secondaryColor,
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 16,
         ),
       ),
     );
