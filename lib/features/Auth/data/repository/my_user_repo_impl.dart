@@ -24,7 +24,7 @@ class MyUserRepoImpl implements MyUserRepo {
   }
 
   @override
-  Future<Either<Success<String>, Failure>> login(
+  Future<Either<Success<User>, Failure>> login(
       String email, String password) async {
     try {
       //TODO (mahmoud)  why we not save the result in credential var
@@ -32,21 +32,22 @@ class MyUserRepoImpl implements MyUserRepo {
         email: email,
         password: password,
       );
-      return left(Success(value: 'Logged in successfully'));
+
+      return left(Success(value: currentUser!));
     } catch (e) {
       return right(Failure(exception: e));
     }
   }
 
   @override
-  Future<Either<Success<String>, Failure>> setUserData(MyUser myUser) async {
+  Future<Either<Success<MyUser>, Failure>> setUserData(MyUser myUser) async {
     try {
       await usersCollection
           .doc(myUser.userId)
           .set(myUser.toEntity().toDocument());
                 debugPrint("my user repo iml | setUserData success");
 
-      return left(Success(value: 'User modified successfully'));
+      return left(Success(value: myUser));
     } catch (e) {
       return right(Failure(exception: e));
     }

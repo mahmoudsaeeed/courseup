@@ -26,7 +26,7 @@ class AuthPage extends StatelessWidget {
               body: Center(child: CircularProgressIndicator()));
         } else if (state is AuthAuthenticated) {
           return MyHomeView(
-            user: state.user!,
+            user: state.user,
           );
         } else if (state is AuthUnAuthenticated) {
           return const MyLoginView();

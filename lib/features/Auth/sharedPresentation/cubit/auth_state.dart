@@ -12,8 +12,8 @@ final class AuthInitial extends AuthState {}
 final class AuthLoading extends AuthState {}
 
 final class AuthAuthenticated extends AuthState {
-  final User? user;
-  const AuthAuthenticated({this.user});
+  final MyUserEntity user;
+  const AuthAuthenticated({required this.user});
 }
 
 final class AuthUnAuthenticated extends AuthState {}
