@@ -37,6 +37,24 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator>
 
   @override
   Widget build(BuildContext context) {
+    List<BottomNavigationBarItem> myIconPages = const [
+      BottomNavigationBarItem(
+        icon: Icon(Icons.home_outlined),
+        label: "Home",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.shopping_cart_outlined),
+        label: "Cart",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.video_collection_outlined),
+        label: "Courses",
+      ),
+      BottomNavigationBarItem(
+        icon: Icon(Icons.person_2_outlined),
+        label: "Profile",
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(),
       body: _myWidgetPages.elementAt(_selectedIndex),
@@ -50,22 +68,7 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator>
         enableFeedback: true,
         unselectedFontSize: 14,
         backgroundColor: MyColors.mySecondaryColor,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart_outlined),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_collection_outlined),
-            label: "Courses",
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_2_outlined), label: "Profile"),
-        ],
+        items: myIconPages,
         currentIndex: _selectedIndex,
         onTap: _selectedIndexTap,
       ),

@@ -10,6 +10,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'features/splash_screen/splash_screen.dart';
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
 
         home: const SplashScreen(),
+        // home: const MyViewProfile(),
       ),
     );
   }
