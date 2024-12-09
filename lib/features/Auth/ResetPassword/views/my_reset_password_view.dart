@@ -21,7 +21,8 @@ class _MyResetPasswordViewState extends State<MyResetPasswordView> {
     return Scaffold(
       appBar: AppBar(),
       body: Container(
-        child: SingleChildScrollView(child: MyResetPasswordForm(myEmailController: _myEmailController)),
+        child: SingleChildScrollView(
+          child: MyResetPasswordForm(myEmailController: _myEmailController)),
       ),
     );
   }

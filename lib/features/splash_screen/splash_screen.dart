@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       Navigator.pushReplacementNamed(
         context,
-        MyPages.myAuthPage,
+        MyPages.myBottomNavigator,
       );
     }
   }

@@ -71,7 +71,9 @@ class _MySignupFormState extends State<MySignupForm> {
               myHint: "Repeat password",
               checkPassword: true,
             ),
-            const Gap(20),
+            const Gap(30),
+
+
             MySignupBtn(
               formState: _formState,
               myButtonText: "SignUp",

@@ -8,6 +8,8 @@ import 'package:courseup/features/ViewProfile/presentation/views/my_view_profile
 import 'package:courseup/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../features/BottomNavigator/presentation/widgets/my_bottom_navigator.dart';
+
 class MyRoutes {
   static Route<dynamic> myRoutes(RouteSettings settings) {
     switch (settings.name) {
@@ -42,6 +44,11 @@ class MyRoutes {
       case MyPages.myResetPassword:
       {
           return MaterialPageRoute(builder: (context) => const MyResetPasswordView());
+
+      }
+      case MyPages.myBottomNavigator:
+      {
+          return MaterialPageRoute(builder: (context) => const MyBottomNavigator());
 
       }
     }
