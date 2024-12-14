@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
@@ -35,12 +37,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
 
         home: const SplashScreen(),
-        // home: Scaffold(
-        //   appBar: AppBar(),
-        //   body: Container(
-        //     child: const Text("Hell0"),
-        //   ),
-        // ),
+        // home: const MyViewProfile(),
       ),
     );
   }
