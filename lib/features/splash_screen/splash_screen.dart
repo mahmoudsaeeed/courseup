@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     await Future.delayed(
-      Duration(
+      const Duration(
         seconds: 2,
       ),
     );
