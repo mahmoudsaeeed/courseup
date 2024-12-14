@@ -24,7 +24,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         final result = await _userRepository.getUserData(user.userId);
         result.fold((userEntity) {
           log('user updated successfully');
-          emit(ProfileUpdated(user: userEntity.value));
+          emit(ProfileSuccess(user: userEntity.value));
         }, (error) {
           log('error: user haven\'t been updated');
           emit(ProfileError(message: error.toString()));
@@ -34,5 +34,16 @@ class ProfileCubit extends Cubit<ProfileState> {
         log('profile image couldn\'t have uploaded');
         emit(ProfileError(message: error.toString()));
       });
+  }
+
+  Future<void> fetchUserData(String userId) async {
+    emit(ProfileLoading());
+
+    final response = await _userRepository.getUserData(userId);
+    response.fold((success) {
+      emit(ProfileSuccess(user: success.value));
+    }, (error) {
+      emit(ProfileError(message: error.toString()));
+    });
   }
 }

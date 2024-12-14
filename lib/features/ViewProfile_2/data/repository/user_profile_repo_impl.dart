@@ -7,7 +7,6 @@ import 'package:courseup/features/ViewProfile_2/data/services/cloudinary_service
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courseup/features/ViewProfile_2/domain/user_profile_repo.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class UserProfileRepoImpl implements UserProfileRepo {
   final FirebaseFirestore _firestore;

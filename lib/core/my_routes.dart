@@ -3,7 +3,6 @@ import 'package:courseup/features/Auth/ResetPassword/views/my_reset_password_vie
 import 'package:courseup/features/Auth/SignUp/presentation/views/my_signup_view.dart';
 import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
 import 'package:courseup/features/Auth/Login/presentation/views/my_login_view.dart';
-import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/EditProfile/presentation/views/my_edit_profile_view.dart';
 import 'package:courseup/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
@@ -34,8 +33,7 @@ class MyRoutes {
         }
       case MyPages.myViewPage:
       {
-          final args = settings.arguments as MyUserEntity;
-          return MaterialPageRoute(builder: (context) => MyViewProfile(user: args,));
+          return MaterialPageRoute(builder: (context) => const MyViewProfile());
 
       }
       case MyPages.myUpdateProfilePage:

@@ -11,10 +11,10 @@ final class ProfileInitial extends ProfileState {}
 
 class ProfileLoading extends ProfileState {}
 
-class ProfileUpdated extends ProfileState {
+class ProfileSuccess extends ProfileState {
   final MyUserEntity user;
 
-  const ProfileUpdated({required this.user});
+  const ProfileSuccess({required this.user});
 }
 
 class ProfileError extends ProfileState {

@@ -46,9 +46,8 @@ class MyProfileImage extends StatelessWidget {
                   radius: 100,
                   backgroundColor: const Color.fromARGB(255, 0, 0, 0),
                   foregroundImage: user.profileImage != null
-                      ? ((state is ProfileUpdated) ? NetworkImage(state.user.profileImage!) : NetworkImage(user.profileImage!))
+                      ?  NetworkImage(user.profileImage!)
                       : const AssetImage(hunterBoy),
-                  
                 ),
                 if (isLoading)
                   const SizedBox(
