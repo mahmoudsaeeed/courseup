@@ -1,7 +1,6 @@
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/ResetPassword/views/my_reset_password_view.dart';
 import 'package:courseup/features/Auth/SignUp/presentation/views/my_signup_view.dart';
-import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
 import 'package:courseup/features/Auth/Login/presentation/views/my_login_view.dart';
 import 'package:courseup/features/EditProfile/presentation/views/my_edit_profile_view.dart';
 import 'package:courseup/features/onboarding/onboarding_screen.dart';
@@ -27,10 +26,6 @@ class MyRoutes {
         {
           return MaterialPageRoute(builder: (context) => OnboardingScreen());
         }
-      case MyPages.myAuthPage:
-        {
-          return MaterialPageRoute(builder: (context) => const AuthPage());
-        }
       case MyPages.myViewPage:
       {
           return MaterialPageRoute(builder: (context) => const MyViewProfile());
@@ -53,7 +48,7 @@ class MyRoutes {
     }
 
     return MaterialPageRoute(
-      builder: (context) => const AuthPage(),
+      builder: (context) => const MyBottomNavigator(),
     );
   }
 }
