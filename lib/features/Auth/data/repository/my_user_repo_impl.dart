@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courseup/features/Auth/data/models/my_user.dart';
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/domain/repository/my_user_repo.dart';
 import 'package:courseup/features/Auth/shared/error/result.dart';
 import 'package:dartz/dartz.dart';
@@ -24,39 +25,49 @@ class MyUserRepoImpl implements MyUserRepo {
   }
 
   @override
-  Future<Either<Success<User>, Failure>> login(
-      String email, String password) async {
-    try {
-      //TODO (mahmoud)  why we not save the result in credential var
-      await _firebaseAuth.signInWithEmailAndPassword(
-        email: email,
-        password: password,
-      );
+  Future<Either<Success<MyUserEntity>, Failure>> login(
+    String email, String password) async {
+  try {
+    UserCredential credential = await _firebaseAuth.signInWithEmailAndPassword(
+      email: email,
+      password: password,
+    );
 
-      return left(Success(value: currentUser!));
-    } catch (e) {
-      return right(Failure(exception: e));
+    debugPrint("Login successful for user: ${credential.user?.uid}");
+
+    final userDoc =
+        await usersCollection.doc(credential.user!.uid).get();
+
+    if (!userDoc.exists) {
+      throw Exception("User document not found in Firestore.");
     }
+
+    MyUserEntity userEntity = MyUserEntity.fromDocument(userDoc.data()!);
+
+
+    return left(Success(value: userEntity));
+  } catch (e) {
+    debugPrint("Login failed with error: $e");
+    return right(Failure(exception: e));
   }
+}
 
   @override
-  Future<Either<Success<MyUser>, Failure>> setUserData(MyUser myUser) async {
-    try {
-      await usersCollection
-          .doc(myUser.userId)
-          .set(myUser.toEntity().toDocument());
-                debugPrint("my user repo iml | setUserData success");
-
-      return left(Success(value: myUser));
-    } catch (e) {
-      return right(Failure(exception: e));
-    }
+  Future<Either<Success<MyUserEntity>, Failure>> setUserData(MyUserEntity userEntity) async {
+  try {
+    final myUser = MyUser.fromEntity(userEntity);
+    await usersCollection.doc(myUser.userId).set(myUser.toEntity().toDocument()); // Save to Firebase
+    return left(Success(value: userEntity));
+  } catch (e) {
+    return right(Failure(exception: e));
   }
+}
 
   @override
-  Future<Either<Success<MyUser>, Failure>> signUp(
-      MyUser myUser, String password) async {
+  Future<Either<Success<MyUserEntity>, Failure>> signUp(
+      MyUserEntity userEntity, String password) async {
     try {
+      MyUser myUser = MyUser.fromEntity(userEntity);
       debugPrint("email = ${myUser.email} \npassword = $password");
       UserCredential user = await _firebaseAuth.createUserWithEmailAndPassword(
         email: myUser.email,
@@ -64,7 +75,7 @@ class MyUserRepoImpl implements MyUserRepo {
       );
       debugPrint("my user repo iml | create success");
       myUser = myUser.copyWith(userId: user.user!.uid);
-      return left(Success(value: myUser));
+      return left(Success(value: myUser.toEntity()));
     } catch (e) {
             debugPrint("my user repo iml | create failed");
 
@@ -84,12 +95,13 @@ class MyUserRepoImpl implements MyUserRepo {
   }
   
   @override
-  Future<Either<Success<String>, Failure>> resetPassword(MyUser myUser) async {
+  Future<Either<Success<String>, Failure>> resetPassword(MyUserEntity userEntity) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: myUser.email);
+      await _firebaseAuth.sendPasswordResetEmail(email: userEntity.email);
       return left(Success(value: 'Reset email sent successfully'));
     } catch (e) {
       return right(Failure(exception: e));
     }
   }
+
 }

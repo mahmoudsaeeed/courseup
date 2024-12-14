@@ -49,7 +49,7 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     await Future.delayed(
-      Duration(
+      const Duration(
         seconds: 2,
       ),
     );
@@ -62,7 +62,7 @@ class _SplashScreenState extends State<SplashScreen> {
     } else {
       Navigator.pushReplacementNamed(
         context,
-        MyPages.myAuthPage,
+        MyPages.myBottomNavigator,
       );
     }
   }

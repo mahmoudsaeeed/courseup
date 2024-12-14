@@ -1,10 +1,9 @@
-import 'dart:developer';
-
 import 'package:courseup/core/constants.dart';
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/utils/my_colors.dart';
+import '../../../../sharedWidgetsBetweenScreens/my_button.dart';
 import '../../../data/models/my_user.dart';
 
 class MySignupBtn extends StatelessWidget {
@@ -27,49 +26,31 @@ class MySignupBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      height: 50,
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: MyColors.secondaryColor,
-          alignment: Alignment.center,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-        ),
-        onPressed: () {
-          if (formState.currentState!.validate()) {
-            debugPrint("validation success");
+    return MyButton(
+      buttonName: "SignUp",
+      onPressed: () {
+        if (formState.currentState!.validate()) {
+          debugPrint("validation success");
 
-            MyUser myUser = const MyUser();
-            myUser = myUser.copyWith(
-              name: myNameController.text,
-              email: myEmailController.text,
-            );
+          MyUser myUser = const MyUser();
+          myUser = myUser.copyWith(
+            name: myNameController.text,
+            email: myEmailController.text,
+          );
 
-            
-            log(myNameController.text);
-            log(myEmailController.text);
-            log(myPasswordController.text);
+          MyUserEntity userEntity = myUser.toEntity();
 
-            BlocProvider.of<AuthCubit>(context).signup(
-              myUser,
-              myPasswordController.text,
-            );
-            Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);
-            debugPrint("email here = ${myUser.email}");
-            // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
-          } else {
-            debugPrint("Validation error");
-          }
-        },
-        child: Text(
-          myButtonText,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+          BlocProvider.of<AuthCubit>(context).signup(
+            userEntity,
+            myPasswordController.text,
+          );
+          Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);
+          debugPrint("email here = ${myUser.email}");
+          // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
+        } else {
+          debugPrint("Validation error");
+        }
+      },
     );
   }
 }

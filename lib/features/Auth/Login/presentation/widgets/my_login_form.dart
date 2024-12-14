@@ -39,12 +39,7 @@ class _MyLoginFormState extends State<MyLoginForm> {
               children: [
                 TextButton(
                   onPressed: () {
-                    // showDialog(
-                    //   context: context,
-                    //   builder: (context) => const AlertDialog(
-                    //     title: Text("لسه مشتغلتش"),
-                    //   ),
-                    // );
+
                     Navigator.pushNamed(context, MyPages.myResetPassword);
                   },
                   child: Text(

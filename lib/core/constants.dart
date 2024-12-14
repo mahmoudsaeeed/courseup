@@ -10,6 +10,7 @@ class MyPages {
   static const String myViewPage = "view_profile";
   static const String myUpdateProfilePage = "update_profile";
   static const String myResetPassword = "resetPassword";
+  static const String myBottomNavigator = "myBottomNavigator";
   // static const String myHomePage = "/";
 }
 
