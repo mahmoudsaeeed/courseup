@@ -1,5 +1,6 @@
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_main_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigator extends StatefulWidget {
@@ -14,9 +15,11 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator>
   bool isUser = false;
   int _selectedIndex = 0;
   final List<Widget> _myWidgetPages = [
-    Container(
-      color: Colors.amber,
-      child: const Text("Home"),
+    MyMainAppBar(
+      myBody: Container(
+        color: Colors.amber,
+        child: const Text("Home"),
+      ),
     ),
     Container(
       color: Colors.red,

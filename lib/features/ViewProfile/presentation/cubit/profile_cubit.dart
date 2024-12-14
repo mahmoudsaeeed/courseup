@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
-import 'package:courseup/features/ViewProfile_2/domain/user_profile_repo.dart';
+import 'package:courseup/features/ViewProfile/domain/user_profile_repo.dart';
 import 'package:equatable/equatable.dart';
 
 part 'profile_state.dart';

@@ -35,7 +35,10 @@ class MyApp extends StatelessWidget {
         ),
 
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
+
         home: const SplashScreen(),
-             ));
-         }       // home: const MyViewProfile(),
+        // home: const MyViewProfile(),
+      ),
+    );
+  }
 }

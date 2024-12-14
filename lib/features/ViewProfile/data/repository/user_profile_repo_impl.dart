@@ -2,10 +2,10 @@ import 'dart:developer';
 
 import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/shared/error/result.dart';
-import 'package:courseup/features/ViewProfile_2/data/services/cloudinary_service.dart';
+import 'package:courseup/features/ViewProfile/data/services/cloudinary_service.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:courseup/features/ViewProfile_2/domain/user_profile_repo.dart';
+import 'package:courseup/features/ViewProfile/domain/user_profile_repo.dart';
 import 'package:dartz/dartz.dart';
 
 class UserProfileRepoImpl implements UserProfileRepo {

@@ -1,16 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
-import 'package:courseup/features/ViewProfile_2/data/repository/user_profile_repo_impl.dart';
-import 'package:courseup/features/ViewProfile_2/data/services/cloudinary_service.dart';
-import 'package:courseup/features/ViewProfile_2/presentation/cubit/profile_cubit.dart';
-import 'package:courseup/features/ViewProfile_2/presentation/widgets/my_background_radius.dart';
-import 'package:courseup/features/ViewProfile_2/presentation/widgets/my_profile_image.dart';
-import 'package:courseup/features/ViewProfile_2/presentation/widgets/my_view_profile_widget.dart';
+import 'package:courseup/features/ViewProfile/data/repository/user_profile_repo_impl.dart';
+import 'package:courseup/features/ViewProfile/data/services/cloudinary_service.dart';
+import 'package:courseup/features/ViewProfile/presentation/cubit/profile_cubit.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_background_radius.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_edit_button.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_profile_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../widgets/my_edit_button.dart';
+import '../widgets/my_view_profile_widget.dart';
 
 class MyViewProfile extends StatelessWidget {
   const MyViewProfile({
@@ -40,7 +40,7 @@ class MyViewProfile extends StatelessWidget {
                   MyProfileImage(
                     user: state.user,
                   ),
-                  MyViewProfileWidget(user: state.user,),
+                  MyViewProfileWidget(myUser: state.user,),
                   const MyEditButton(),
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.05,

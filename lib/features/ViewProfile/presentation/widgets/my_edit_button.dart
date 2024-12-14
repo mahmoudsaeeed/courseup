@@ -1,3 +1,4 @@
+import 'package:courseup/core/constants.dart';
 import 'package:flutter/material.dart';
 
 import '../../../sharedWidgetsBetweenScreens/my_button.dart';
@@ -14,7 +15,9 @@ class MyEditButton extends StatelessWidget {
           width: 260,
           child: MyButton(
             buttonName: "Edit Profile",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, MyPages.myUpdateProfilePage, );
+            },
           )),
     );
   }

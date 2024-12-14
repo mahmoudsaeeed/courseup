@@ -8,7 +8,7 @@ import 'package:courseup/features/onboarding/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../features/BottomNavigator/presentation/widgets/my_bottom_navigator.dart';
-import '../features/ViewProfile_2/presentation/views/my_view_profile.dart';
+import '../features/ViewProfile/presentation/views/my_view_profile.dart';
 
 class MyRoutes {
   static Route<dynamic> myRoutes(RouteSettings settings) {

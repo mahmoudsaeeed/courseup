@@ -3,7 +3,7 @@ import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../ViewProfile_2/presentation/views/my_view_profile.dart';
+import '../../../ViewProfile/presentation/views/my_view_profile.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
