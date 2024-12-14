@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 import 'my_text_form_field.dart';
 
 class MyPasswordTextForm extends StatelessWidget {
-  const MyPasswordTextForm(
-      {super.key, required this.myPassword, this.checkPassword = false, this.myHint = "Password"});
+  const MyPasswordTextForm({
+    super.key,
+    required this.myPassword,
+    this.checkPassword = false,
+    this.myHint = "Password",
+  });
   final TextEditingController myPassword;
   final bool checkPassword;
   final String myHint;

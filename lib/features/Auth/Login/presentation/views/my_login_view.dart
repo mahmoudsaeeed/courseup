@@ -1,7 +1,7 @@
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_form.dart';
-import 'package:courseup/features/sharedWidgetsBetweenScreens/my_shared_page.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_page_with_logo.dart';
 import 'package:flutter/material.dart';
 
 class MyLoginView extends StatelessWidget {
@@ -11,7 +11,7 @@ class MyLoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      child: MySharedPage(
+      child: MyPageWithLogo(
         myPageName: "Login",
         myCustomWidget: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,6 @@
 import 'package:courseup/features/Auth/ResetPassword/widgets/my_send_email_button.dart';
-import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_email_text_form.dart';
-import 'package:courseup/features/sharedWidgetsBetweenScreens/my_shared_page.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_email_text_form.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_page_with_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -10,7 +10,7 @@ class MyResetPasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MySharedPage(
+    return MyPageWithLogo(
       myPageName: "Reset Password",
       myCustomWidget: Form(
         child: Column(

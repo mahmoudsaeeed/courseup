@@ -21,13 +21,17 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator>
         child: const Text("Home"),
       ),
     ),
-    Container(
-      color: Colors.red,
-      child: const Text("Cart"),
+    MyMainAppBar(
+      myBody: Container(
+        color: Colors.red,
+        child: const Text("Cart"),
+      ),
     ),
-    Container(
-      color: Colors.blue,
-      child: const Text("Courses"),
+    MyMainAppBar(
+      myBody: Container(
+        color: Colors.blue,
+        child: const Text("Courses"),
+      ),
     ),
     const AuthPage(),
   ];

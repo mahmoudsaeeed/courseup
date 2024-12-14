@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../constants/images.dart';
 import '../../../../core/utils/my_colors.dart';
 
-class MySharedPage extends StatelessWidget {
-  const MySharedPage(
+class MyPageWithLogo extends StatelessWidget {
+  const MyPageWithLogo(
       {super.key, required this.myPageName, required this.myCustomWidget});
   final String myPageName;
 
