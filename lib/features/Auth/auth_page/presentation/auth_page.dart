@@ -29,7 +29,7 @@ class AuthPage extends StatelessWidget {
           // return MyHomeView(
           //   user: state.user!,
           // );
-          return MyViewProfile(myUser:state.user ,);
+          return MyViewProfile(user: state.user,);
           
         } else if (state is AuthUnAuthenticated) {
           return const MyLoginView();

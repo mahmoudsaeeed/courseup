@@ -17,9 +17,9 @@ class MyViewProfileWidget extends StatelessWidget {
         children: [
           MyListTileWidget(myIcon: Icons.person_2_outlined, dataName: myUser.name),
           MyListTileWidget(myIcon: Icons.email_outlined, dataName: myUser.email),
-          // MyListTileWidget(
-          //     myIcon: Icons.phone_outlined, dataName: myUser.phone),
-          // MyListTileWidget(myIcon: Icons.home_outlined, dataName: myUser.address),
+          MyListTileWidget(
+              myIcon: Icons.phone_outlined, dataName: myUser.phoneNumber ?? ""),
+          MyListTileWidget(myIcon: Icons.home_outlined, dataName: myUser.address ?? ""),
         ],
       ),
     );

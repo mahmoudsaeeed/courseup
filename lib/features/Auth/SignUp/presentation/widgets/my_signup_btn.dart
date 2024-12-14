@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:courseup/core/constants.dart';
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -39,12 +38,10 @@ class MySignupBtn extends StatelessWidget {
             email: myEmailController.text,
           );
 
-          log(myNameController.text);
-          log(myEmailController.text);
-          log(myPasswordController.text);
+          MyUserEntity userEntity = myUser.toEntity();
 
           BlocProvider.of<AuthCubit>(context).signup(
-            myUser,
+            userEntity,
             myPasswordController.text,
           );
           Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);

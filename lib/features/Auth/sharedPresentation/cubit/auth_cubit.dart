@@ -5,7 +5,6 @@ import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/my_user.dart';
 
 part 'auth_state.dart';
 
@@ -31,21 +30,16 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login(String email, String password) async {
     emit(AuthLoading());
-    //TODO (mahmoud) result either success msg or failure
     final result = await firebaseUserRepo.login(email, password);
     debugPrint("result = ${result.isLeft()}");
     result.fold((success) async {
-      //can cause problems
-      final userDoc =
-      await FirebaseFirestore.instance.collection('users').doc(success.value.uid).get();
-      MyUserEntity myUserEntity = MyUserEntity.fromDocument(userDoc.data()!);
-      emit(AuthAuthenticated(user: myUserEntity));
+      emit(AuthAuthenticated(user: success.value));
     }, (failure) {
       emit(AuthError(message: failure.exception.toString()));
     });
   }
 
-  Future<void> signup(MyUser myUser, String password) async {
+  Future<void> signup(MyUserEntity myUser, String password) async {
     emit(AuthLoading());
     final result = await firebaseUserRepo.signUp(myUser, password);
     result.fold((success) async {
@@ -53,7 +47,7 @@ class AuthCubit extends Cubit<AuthState> {
       setUserResult.fold(
         (userSuccess) async {
           // final currentUser = await firebaseUserRepo.user.first;
-          MyUserEntity userEntity = userSuccess.value.toEntity();
+          MyUserEntity userEntity = userSuccess.value;
           emit(AuthAuthenticated(user: userEntity));
         },
         (failure) => emit(AuthError(message: failure.exception.toString())),

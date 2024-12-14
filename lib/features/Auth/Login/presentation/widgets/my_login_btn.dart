@@ -34,8 +34,9 @@ class MyLoginBtn extends StatelessWidget {
             //TODO navigate to home page
             log(myEmail.text);
             log(myPassword.text);
-            BlocProvider.of<AuthCubit>(context)
+              BlocProvider.of<AuthCubit>(context)
                 .login(myEmail.text.trim(), myPassword.text);
+            
           } else {
             debugPrint("Validation error");
           }

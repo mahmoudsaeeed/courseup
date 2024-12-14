@@ -12,11 +12,18 @@ class MyHomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     // final user = ModalRoute.of(context)!.settings.arguments as User;
     return Scaffold(
-      appBar: AppBar(leading: IconButton(onPressed: () {
-        BlocProvider.of<AuthCubit>(context).logout();
-        Navigator.pushReplacementNamed(context, MyPages.myAuthPage);
-      }, icon: const Icon(Icons.logout)),),
-      body: Center(child: Text("hello, ${user.name}"),),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            BlocProvider.of<AuthCubit>(context).logout();
+            Navigator.pushReplacementNamed(context, MyPages.myAuthPage);
+          },
+          icon: const Icon(Icons.logout),
+        ),
+      ),
+      body: Center(
+        child: Text("hello, ${user.name}"),
+      ),
     );
   }
 }
