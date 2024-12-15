@@ -44,7 +44,7 @@ class MySignupBtn extends StatelessWidget {
             userEntity,
             myPasswordController.text,
           );
-          Navigator.of(context).pushReplacementNamed(MyPages.myAuthPage);
+          Navigator.of(context).pushReplacementNamed(MyPages.myBottomNavigator);
           debugPrint("email here = ${myUser.email}");
           // context.read<AuthCubit>().signup(myUser, myPasswordController.text);
         } else {

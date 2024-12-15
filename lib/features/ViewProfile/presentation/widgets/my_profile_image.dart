@@ -22,7 +22,7 @@ class MyProfileImage extends StatelessWidget {
             backgroundColor: const Color.fromARGB(255, 0, 0, 0),
             foregroundImage: user.profileImage != null
                 ? NetworkImage(user.profileImage!)
-                : const AssetImage(hunterBoy),
+                : const AssetImage(MyImages.hunterBoy),
           ),
           Positioned(
               left: MediaQuery.sizeOf(context).width / 2 - 80,

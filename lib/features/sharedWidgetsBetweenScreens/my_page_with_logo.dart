@@ -16,7 +16,7 @@ class MyPageWithLogo extends StatelessWidget {
         const SizedBox(
           height: 200,
           child: Image(
-            image: AssetImage(appLogo),
+            image: AssetImage(MyImages.appLogo),
           ),
         ),
         Text(

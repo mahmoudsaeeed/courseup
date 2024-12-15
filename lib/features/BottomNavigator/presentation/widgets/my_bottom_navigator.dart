@@ -1,7 +1,11 @@
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
-import 'package:courseup/features/Auth/auth_page/presentation/auth_page.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
+import 'package:courseup/features/ViewProfile/presentation/views/my_view_profile.dart';
+import 'package:courseup/features/create_course/presentation/views/my_create_course_view.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_main_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyBottomNavigator extends StatefulWidget {
   const MyBottomNavigator({super.key});
@@ -27,13 +31,28 @@ class _MyBottomNavigatorState extends State<MyBottomNavigator>
         child: const Text("Cart"),
       ),
     ),
-    MyMainAppBar(
-      myBody: Container(
-        color: Colors.blue,
-        child: const Text("Courses"),
-      ),
-    ),
-    const AuthPage(),
+    const MyCreateCourseView(),
+    BlocBuilder<AuthCubit, AuthState>(builder: (context, state) {
+      if (state is AuthAuthenticated) {
+        return const MyViewProfile();
+      } else if (state is AuthLoading) {
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      } else {
+        return Scaffold(
+          body: Center(
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, MyPages.myLoginPage);
+                },
+                child: const Text('Login')),
+          ),
+        );
+      }
+    })
   ];
 
   void _selectedIndexTap(int index) {

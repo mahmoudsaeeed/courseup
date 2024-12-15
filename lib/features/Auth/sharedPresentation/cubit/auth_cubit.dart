@@ -10,23 +10,42 @@ part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final MyUserRepoImpl firebaseUserRepo;
-
+  MyUserEntity? _authenticatedUser;
   AuthCubit(this.firebaseUserRepo) : super(AuthInitial()) {
     firebaseUserRepo.user.listen((user) async {
       if (user != null) {
         debugPrint("authCubit | already user authed");
-        final userDoc =
-        await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+        final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
         MyUserEntity myUserEntity = MyUserEntity.fromDocument(userDoc.data()!);
+        _authenticatedUser = myUserEntity;
         emit(AuthAuthenticated(user: myUserEntity));
       } else {
         debugPrint("authCubit | user not authed");
+        _authenticatedUser = null;
         emit(AuthUnAuthenticated());
       }
     }).onError((error) {
       emit(AuthError(message: error.toString()));
     });
   }
+
+  MyUserEntity? get authenticatedUser => _authenticatedUser;
+
+  Future<void> checkAuthStatus() async {
+  emit(AuthLoading());
+  try {
+    final user = await firebaseUserRepo.currentUser;
+    if (user != null) {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      MyUserEntity myUserEntity = MyUserEntity.fromDocument(userDoc.data()!);
+      emit(AuthAuthenticated(user: myUserEntity));
+    } else {
+      emit(AuthUnAuthenticated());
+    }
+  } catch (e) {
+    emit(AuthError(message: e.toString()));
+  }
+}
 
   Future<void> login(String email, String password) async {
     emit(AuthLoading());

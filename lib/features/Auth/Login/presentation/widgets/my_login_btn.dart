@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +37,7 @@ class MyLoginBtn extends StatelessWidget {
             log(myPassword.text);
               BlocProvider.of<AuthCubit>(context)
                 .login(myEmail.text.trim(), myPassword.text);
-            
+            Navigator.pushReplacementNamed(context, MyPages.myBottomNavigator);
           } else {
             debugPrint("Validation error");
           }

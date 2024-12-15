@@ -3,14 +3,19 @@ import 'package:courseup/features/Search/presentation/widgets/my_search_widget.d
 import 'package:flutter/material.dart';
 
 class MyMainAppBar extends StatelessWidget {
-  const MyMainAppBar({super.key, required this.myBody});
+  const MyMainAppBar(
+      {super.key,
+      required this.myBody,
+      this.myFloatingButton,
+      this.myFloatingButtonLocation});
   final Widget myBody;
+  final Widget? myFloatingButton;
+  final FloatingActionButtonLocation? myFloatingButtonLocation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-            child: const Padding(
+        title: const Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -21,7 +26,7 @@ class MyMainAppBar extends StatelessWidget {
               MySearchWidget()
             ],
           ),
-        )),
+        ),
         backgroundColor: MyColors.mySecondaryColor,
         actionsIconTheme: IconThemeData(
           color: MyColors.myThirdColor,
@@ -32,7 +37,16 @@ class MyMainAppBar extends StatelessWidget {
         // ],
       ),
       // drawer: const Drawer(),
-      body: myBody,
+      body: InkWell(
+          onTap: () {
+            FocusScopeNode currNode = FocusScope.of(context);
+            if (currNode.focusedChild != null && !currNode.hasPrimaryFocus) {
+              FocusManager.instance.primaryFocus!.unfocus();
+            }
+          },
+          child: SingleChildScrollView(child: myBody)),
+      floatingActionButton: myFloatingButton,
+      floatingActionButtonLocation: myFloatingButtonLocation,
     );
   }
 }

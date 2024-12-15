@@ -13,6 +13,7 @@ class MyEmailTextForm extends StatelessWidget {
     return MyTextFormField(
               myController: myEmail,
               myHint: "Email",
+              isEmail: true,
               myValidator: (input) {
                 if (input!.isEmpty) {
                   return "please Enter your email";
