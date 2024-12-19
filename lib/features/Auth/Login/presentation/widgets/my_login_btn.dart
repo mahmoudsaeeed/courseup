@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:flutter/material.dart';
@@ -23,26 +22,30 @@ class MyLoginBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyButton(
-        onPressed: () {
-          if (formState.currentState!.validate()) {
-            debugPrint("validation success");
-            // MyUser myUser = MyUser(email: myEmail.text , );
-            // BlocProvider.of<AuthCubit>(context).login(
-            //   myUser, //!  change to myEmail not myUser
-            //   myPassword.text,
-            // );
-            //TODO check if data is correct and stored
-            //TODO navigate to home page
-            log(myEmail.text);
-            log(myPassword.text);
-              BlocProvider.of<AuthCubit>(context)
-                .login(myEmail.text.trim(), myPassword.text);
-            Navigator.pushReplacementNamed(context, MyPages.myBottomNavigator);
-          } else {
-            debugPrint("Validation error");
-          }
-        },
-        buttonName: myButtonText,
+      onPressed: () {
+        if (formState.currentState!.validate()) {
+
+          //TODO check if data is correct and stored
+          //TODO navigate to home page
+          log(myEmail.text);
+          log(myPassword.text);
+          debugPrint("========  myloginbtn --  before Changing cubit state here ===========");
+          BlocProvider.of<AuthCubit>(context)
+              .login(myEmail.text.trim(), myPassword.text);
+          debugPrint("========  myloginbtn --  after Changing cubit state here ===========");
+          
+
+          // Navigator.push(context, MaterialPageRoute(
+          //   builder: (context) {
+          //     return const MyCheckLoginWidget();
+            // },
+          // ));
+          // Navigator.pushReplacementNamed(context, MyPages.myBottomNavigator);
+        } else {
+          debugPrint("Validation error");
+        }
+      },
+      buttonName: myButtonText,
     );
   }
 }

@@ -25,6 +25,6 @@ class MyCustomFonts {
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 }
 
-// class MyCustomStyle {
-
-// }
+class MyKeys {
+  static const String currentPage = 'currPage';
+}

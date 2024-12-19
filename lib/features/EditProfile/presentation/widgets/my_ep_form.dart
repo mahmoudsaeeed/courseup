@@ -1,11 +1,12 @@
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_email_text_form.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_password_text_form.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_text_form_field.dart';
 import 'package:flutter/material.dart';
 
 class MyEpForm extends StatefulWidget {
-  const MyEpForm({super.key});
-
+  const MyEpForm({super.key, required this.myUser});
+  final MyUserEntity myUser;
   @override
   State<MyEpForm> createState() => _MyEpFormState();
 }
@@ -18,9 +19,15 @@ class _MyEpFormState extends State<MyEpForm> {
   @override
   void initState() {
     super.initState();
-    myEmail = TextEditingController();
-    myUsername = TextEditingController();
-    myPassword = TextEditingController();
+    myEmail = TextEditingController(text: widget.myUser.email);
+    myUsername = TextEditingController(text: widget.myUser.name);
+    // myPassword = TextEditingController(text: widget.myUser.);
+  }
+
+  @override
+  void dispose() {
+    debugPrint("closed");
+    super.dispose();
   }
 
   @override

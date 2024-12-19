@@ -55,6 +55,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
 
     if (_isFirstTime) {
+      prefs.setInt(MyKeys.currentPage, 0);
       Navigator.pushReplacementNamed(
         context,
         MyPages.myOnboardingScreen,
@@ -69,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return const Scaffold(
       body: Center(
         child: Image(image: AssetImage(MyImages.appLogo)),
       ),

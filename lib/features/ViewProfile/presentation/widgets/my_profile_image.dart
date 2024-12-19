@@ -11,6 +11,9 @@ class MyProfileImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("myProfileImage");
+    debugPrint("user = ${user.name}");
+    // debugPrint("img link = ${user.profileImage}");
     return Positioned(
       left: (MediaQuery.of(context).size.width / 2) - 80,
       top: 130,
@@ -23,14 +26,17 @@ class MyProfileImage extends StatelessWidget {
             foregroundImage: user.profileImage != null
                 ? NetworkImage(user.profileImage!)
                 : const AssetImage(MyImages.hunterBoy),
+          //   // foregroundImage: AssetImage(MyImages.hunterBoy),
           ),
+          // SizedBox(child: Text("hell"),),
           Positioned(
               left: MediaQuery.sizeOf(context).width / 2 - 80,
               top: 120,
               child: MyChangeImageIcon(
                 onPressed: () async {
-                  final picker = ImagePicker();
-                  final pickedFile = await picker.pickImage(
+                  debugPrint("myProfileImage  ||  before picker");
+                  final ImagePicker picker = ImagePicker();
+                  final XFile? pickedFile = await picker.pickImage(
                     source: ImageSource.gallery,
                   );
                   if (pickedFile != null) {

@@ -34,7 +34,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> checkAuthStatus() async {
   emit(AuthLoading());
   try {
-    final user = await firebaseUserRepo.currentUser;
+    final user = firebaseUserRepo.currentUser;
     if (user != null) {
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       MyUserEntity myUserEntity = MyUserEntity.fromDocument(userDoc.data()!);
@@ -50,7 +50,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> login(String email, String password) async {
     emit(AuthLoading());
     final result = await firebaseUserRepo.login(email, password);
-    debugPrint("result = ${result.isLeft()}");
+    debugPrint("login in auth_cubit  ||  result = auth error");
     result.fold((success) async {
       emit(AuthAuthenticated(user: success.value));
     }, (failure) {

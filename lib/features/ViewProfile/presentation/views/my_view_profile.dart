@@ -20,9 +20,8 @@ class MyViewProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => ProfileCubit(
-          userRepository: UserProfileRepoImpl(
+      body: BlocProvider<ProfileCubit>.value(value: ProfileCubit(
+        userRepository: UserProfileRepoImpl(
             firestore: FirebaseFirestore.instance,
             cloudinaryService: CloudinaryService(),
           ),
@@ -34,6 +33,7 @@ class MyViewProfile extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is ProfileSuccess) {
+              debugPrint("my_view_profile ||   myUser = ${state.user}");
               return Stack(
                 children: [
                   const MyBackgroundRadius(),
@@ -41,7 +41,7 @@ class MyViewProfile extends StatelessWidget {
                     user: state.user,
                   ),
                   MyViewProfileWidget(myUser: state.user,),
-                  const MyEditButton(),
+                  MyEditButton(myUser: state.user,),
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.05,
                     left: MediaQuery.of(context).size.width * 0.05,

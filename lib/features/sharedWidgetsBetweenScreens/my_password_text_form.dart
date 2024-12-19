@@ -30,7 +30,7 @@ class MyPasswordTextForm extends StatelessWidget {
         if (input!.isEmpty) {
           return "please Enter your password";
         } else if (input.length < 4) {
-          return "password should be more than 3 char";
+          return "password should be more than 3 character";
         } else if (checkPassword && !passwordRegex.hasMatch(input)) {
           return "Weak Password";
         } else if (isRepeatedPassword) {

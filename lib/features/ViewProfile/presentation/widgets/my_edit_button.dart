@@ -1,11 +1,12 @@
-import 'package:courseup/core/constants.dart';
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
+import 'package:courseup/test.dart';
 import 'package:flutter/material.dart';
 
 import '../../../sharedWidgetsBetweenScreens/my_button.dart';
 
 class MyEditButton extends StatelessWidget {
-  const MyEditButton({super.key});
-
+  const MyEditButton({super.key, required this.myUser});
+  final MyUserEntity myUser;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -16,7 +17,15 @@ class MyEditButton extends StatelessWidget {
           child: MyButton(
             buttonName: "Edit Profile",
             onPressed: () {
-              Navigator.pushNamed(context, MyPages.myUpdateProfilePage, );
+              debugPrint("myUser = ${myUser.name}");
+              // Navigator.pushNamed(
+              //   context,
+              //   MyPages.myUpdateProfilePage,
+              //   arguments: {
+              //     "user": myUser,
+              //   },
+              // );
+              Test.showNotWorkMsg(context);
             },
           )),
     );
