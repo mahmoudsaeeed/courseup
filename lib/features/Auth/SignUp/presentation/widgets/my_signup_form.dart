@@ -3,6 +3,7 @@ import 'package:courseup/features/sharedWidgetsBetweenScreens/my_password_text_f
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
+import '../../../../sharedWidgetsBetweenScreens/my_email_text_form.dart';
 import '../../../../sharedWidgetsBetweenScreens/my_text_form_field.dart';
 
 class MySignupForm extends StatefulWidget {
@@ -31,8 +32,6 @@ class _MySignupFormState extends State<MySignupForm> {
 
   @override
   Widget build(BuildContext context) {
-    RegExp myEmailExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return Form(
         key: _formState,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -49,19 +48,7 @@ class _MySignupFormState extends State<MySignupForm> {
                 }
               },
             ),
-            MyTextFormField(
-              myController: myEmailController,
-              myHint: "Email",
-              myValidator: (input) {
-                if (input!.isEmpty) {
-                  return "please Enter your email";
-                } else if (!myEmailExp.hasMatch(input)) {
-                  return "Please Enter valid email";
-                } else {
-                  return null;
-                }
-              },
-            ),
+            MyEmailTextForm(myEmail: myEmailController),
             MyPasswordTextForm(
               myPassword: myPasswordController,
               checkPassword: true,
@@ -70,10 +57,16 @@ class _MySignupFormState extends State<MySignupForm> {
               myPassword: mySecondPasswordController,
               myHint: "Repeat password",
               checkPassword: true,
+              isRepeatedPassword: true,
+              myRepeatedValidator: (value) {
+                if (value != myPasswordController.text) {
+                  return "Passwords doesn't matches";
+                } else {
+                  return null;
+                }
+              },
             ),
             const Gap(30),
-
-
             MySignupBtn(
               formState: _formState,
               myButtonText: "SignUp",

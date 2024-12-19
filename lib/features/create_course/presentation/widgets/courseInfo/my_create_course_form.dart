@@ -28,7 +28,6 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
-      color: Colors.amber,
       child: Form(
         // key: myFormState,
         autovalidateMode: AutovalidateMode.onUserInteraction,
