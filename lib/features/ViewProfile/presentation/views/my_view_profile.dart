@@ -1,42 +1,72 @@
-import 'package:courseup/features/ViewProfile/presentation/widgets/my_vp_bottom_action_dashboard.dart';
-import 'package:courseup/features/ViewProfile/presentation/widgets/my_vp_top_info_row.dart';
-import 'package:courseup/features/ViewProfile/presentation/widgets/my_vp_user_dashboard.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
+import 'package:courseup/features/ViewProfile/data/repository/user_profile_repo_impl.dart';
+import 'package:courseup/features/ViewProfile/data/services/cloudinary_service.dart';
+import 'package:courseup/features/ViewProfile/presentation/cubit/profile_cubit.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_background_radius.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_edit_button.dart';
+import 'package:courseup/features/ViewProfile/presentation/widgets/my_profile_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MyViewProfile extends StatefulWidget {
-  const MyViewProfile({super.key});
+import '../widgets/my_view_profile_widget.dart';
 
-  @override
-  State<MyViewProfile> createState() => _MyViewProfileState();
-}
+class MyViewProfile extends StatelessWidget {
+  const MyViewProfile({
+    super.key,
+  });
 
-class _MyViewProfileState extends State<MyViewProfile> {
-  AppBar appBar = AppBar(
-    title: const Text("My profile"),
-    backgroundColor: Colors.blue,
-    centerTitle: true,
-  );
-  double remained = 0;
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
-    double appBarHeight = appBar.preferredSize.height;
-    remained = height - appBarHeight - 60;
     return Scaffold(
-      appBar: appBar,
-      body: SingleChildScrollView(
-        child: Container(
-          height: remained,
-          margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          child: const Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              MyVpTopInfoRow(),
-              MyVpUserDashboard(),
-              MyVpBottomActionDashboard(),
-            ],
+      body: BlocProvider<ProfileCubit>.value(value: ProfileCubit(
+        userRepository: UserProfileRepoImpl(
+            firestore: FirebaseFirestore.instance,
+            cloudinaryService: CloudinaryService(),
           ),
+        )..fetchUserData(FirebaseAuth.instance.currentUser!.uid),
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          builder: (context, state) {
+            if (state is ProfileLoading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state is ProfileSuccess) {
+              debugPrint("my_view_profile ||   myUser = ${state.user}");
+              return Stack(
+                children: [
+                  const MyBackgroundRadius(),
+                  MyProfileImage(
+                    user: state.user,
+                  ),
+                  MyViewProfileWidget(myUser: state.user,),
+                  MyEditButton(myUser: state.user,),
+                  Positioned(
+                    top: MediaQuery.of(context).size.height * 0.05,
+                    left: MediaQuery.of(context).size.width * 0.05,
+                    child: IconButton(
+                      onPressed: () {
+                        BlocProvider.of<AuthCubit>(context).logout();
+                      },
+                      icon: const Icon(
+                        Icons.logout,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            } else if (state is ProfileError) {
+              return Center(
+                child: Text(state.message),
+              );
+            } else {
+              return const Center(
+                child: Text('Unknown error'),
+              );
+            }
+          },
         ),
       ),
     );

@@ -12,3 +12,10 @@ class Failure extends Result {
 
   final Object exception;
 }
+
+class FailureMessage extends Result {
+
+  final String? failureMessage;
+
+  FailureMessage({required this.failureMessage});
+}

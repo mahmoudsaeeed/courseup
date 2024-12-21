@@ -1,3 +1,4 @@
+import 'package:courseup/core/myObservable/my_cubit_observable.dart';
 import 'package:courseup/core/my_routes.dart';
 
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
+  Bloc.observer = MyCubitObservable();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<AuthCubit>(
-      create: (context) => AuthCubit(MyUserRepoImpl()),
+      create: (context) => AuthCubit(MyUserRepoImpl())..checkAuthStatus(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
@@ -35,12 +37,7 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) => MyRoutes.myRoutes(settings),
 
         home: const SplashScreen(),
-        // home: Scaffold(
-        //   appBar: AppBar(),
-        //   body: Container(
-        //     child: const Text("Hell0"),
-        //   ),
-        // ),
+        // home: const MyCreateCourseView(),
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:courseup/test.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,11 @@ class MyEpSaveBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ElevatedButton(
-          onPressed: () {
-            Test.showNotWorkMsg(context);
-          },
-          child: Text("Save Data")),
+    return MyButton(
+      buttonName: "Save Data",
+      onPressed: () {
+        Test.showNotWorkMsg(context);
+      },
     );
   }
 }

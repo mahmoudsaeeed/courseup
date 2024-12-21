@@ -1,3 +1,4 @@
+import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_form.dart';
 import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_save_btn.dart';
 import 'package:courseup/features/EditProfile/presentation/widgets/my_ep_top_part.dart';
@@ -20,6 +21,10 @@ class _MyEditProfileViewState extends State<MyEditProfileView> {
 
   @override
   Widget build(BuildContext context) {
+
+      final arg = ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+    MyUserEntity myUser = arg['user'];
+    
     double height = MediaQuery.of(context).size.height;
     double appBarHeight = appBar.preferredSize.height;
     remained = height - appBarHeight - 60;
@@ -29,12 +34,16 @@ class _MyEditProfileViewState extends State<MyEditProfileView> {
         child: Container(
           height: remained,
           margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              MyEpTopPart(),
-              MyEpForm(),
-              MyEpSaveBtn(),
+              MyEpTopPart(
+                myUser: myUser,
+              ),
+              MyEpForm(
+                myUser: myUser,
+              ),
+              const MyEpSaveBtn(),
             ],
           ),
         ),

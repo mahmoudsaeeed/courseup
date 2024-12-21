@@ -20,7 +20,7 @@ class OnboardingNextButton extends StatelessWidget {
               ),
               onPressed: () {
                 if(isLast) {
-                  Navigator.pushReplacementNamed(context, MyPages.myAuthPage);
+                  Navigator.pushReplacementNamed(context, MyPages.myBottomNavigator);
                 } else {
                   controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
                 }
