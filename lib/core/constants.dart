@@ -28,3 +28,8 @@ class MyCustomFonts {
 class MyKeys {
   static const String currentPage = 'currPage';
 }
+
+class MyApiUrlEndpoints {
+  static const String baseUrl = "http://localhost:3000/";
+  static const String courseUploadEndPoint = "";
+}

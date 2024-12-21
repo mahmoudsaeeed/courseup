@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../sharedWidgetsBetweenScreens/my_change_image_icon.dart';
+
 class MyProfileImage extends StatelessWidget {
   final MyUserEntity user;
   const MyProfileImage({super.key, required this.user});
@@ -53,13 +55,4 @@ class MyProfileImage extends StatelessWidget {
   }
 }
 
-class MyChangeImageIcon extends StatelessWidget {
-  const MyChangeImageIcon({super.key, this.onPressed});
-  final void Function()? onPressed;
-  @override
-  Widget build(BuildContext context) {
-    return CircleAvatar(
-        child: IconButton(
-            onPressed: onPressed, icon: const Icon(Icons.camera_alt_outlined)));
-  }
-}
+

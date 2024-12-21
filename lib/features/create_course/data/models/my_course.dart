@@ -7,17 +7,18 @@ enum CourseStatus {
 }
 
 class MyCourse {
-  final String courseId;
-  final String title;
-  final String description;
-  final String imageUrl;
-  final List<String> videosUrl;
-  final double price;
-  final int numberOfRatings;
-  final CourseStatus courseStatus;
-  final String publisherId;
-  final String category;
-  final double rating;
+  String courseId;
+  String title;
+  String description;
+  String imageUrl;
+  List<String> videosUrl;
+  double price;
+  int numberOfRatings;
+  int numberOfBuyers;
+  CourseStatus courseStatus;
+  String publisherId;
+  String category;
+  double rating;
 
   MyCourse({
     this.courseId = '',
@@ -27,10 +28,11 @@ class MyCourse {
     this.videosUrl = const[],
     this.price = 0.0,
     this.numberOfRatings = 0,
+    this.numberOfBuyers = 0,
     this.courseStatus = CourseStatus.pending,
     this.publisherId = '',
     this.category = '',
-    this.rating = 0.0,
+    this.rating = 5.0,
   });
 
   MyCourse copyWith({
@@ -41,6 +43,7 @@ class MyCourse {
     List<String>? videosUrl,
     double? price,
     int? numberOfRatings,
+    int? numberOfBuyers,
     CourseStatus? courseStatus,
     String? publisherId,
     String? category,
@@ -54,6 +57,7 @@ class MyCourse {
       videosUrl: videosUrl ?? this.videosUrl,
       price: price ?? this.price,
       numberOfRatings: numberOfRatings ?? this.numberOfRatings,
+      numberOfBuyers: numberOfBuyers ?? this.numberOfBuyers,
       courseStatus: courseStatus ?? this.courseStatus,
       publisherId: publisherId ?? this.publisherId,
       category: category ?? this.category,

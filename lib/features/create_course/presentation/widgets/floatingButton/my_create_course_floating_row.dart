@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'my_create_course_save_button.dart';
 
 class MyCreateCourseFloatingRow extends StatelessWidget {
-  const MyCreateCourseFloatingRow({super.key});
-
+  const MyCreateCourseFloatingRow({super.key, required this.formState});
+  final GlobalKey<FormState> formState;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -16,8 +16,8 @@ class MyCreateCourseFloatingRow extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ///////////////
-          const Expanded(
-            child: MyCreateCourseSaveButton(),
+          Expanded(
+            child: MyCreateCourseSaveButton(formState : formState),
           ),
           ///////////////
           IconButton(

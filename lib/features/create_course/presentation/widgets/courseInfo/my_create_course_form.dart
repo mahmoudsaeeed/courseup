@@ -1,9 +1,13 @@
+import 'package:courseup/features/create_course/data/models/my_course.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../sharedWidgetsBetweenScreens/my_text_form_field.dart';
+import '../../MyController/provider/my_course_updating_data.dart';
 
 class MyCreateCourseForm extends StatefulWidget {
-  const MyCreateCourseForm({super.key});
+  const MyCreateCourseForm({super.key, required this.formState});
+  final GlobalKey<FormState> formState;
 
   @override
   State<MyCreateCourseForm> createState() => _MyCreateCourseFormState();
@@ -13,7 +17,7 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
   late TextEditingController myCourseTitle;
   late TextEditingController myCoursePrice;
   late TextEditingController myCourseDesc;
-  // late GlobalKey<FormState> myFormState;
+  // late ;
 
   @override
   void initState() {
@@ -26,11 +30,14 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
 
   @override
   Widget build(BuildContext context) {
+    final myCourseProvided = context.read<MyCourseUpdatingData>();
+    MyCourse newCourse = MyCourse();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Form(
-        // key: myFormState,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
+        key: widget.formState,
+        // autovalidateMode: AutovalidateMode.onUserInteraction,
+        
         child: Column(
           children: [
             MyTextFormField(
@@ -43,8 +50,14 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                   return null;
                 }
               },
-              onEditingComplete: () {
-                //TODO save the value of title in sharedPreferences
+              onSaved: (value) {
+                if (value != null) {
+                  newCourse.title = value;
+                  debugPrint(
+                      "course uploaded his data is name = ${newCourse.title} || desc = ${newCourse.description}  ||   price = ${newCourse.price}");
+                  
+                  // myCourseProvided.uploadData(newCourse);
+                }
               },
             ),
             MyTextFormField(
@@ -61,8 +74,10 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                 }
                 return null;
               },
-              onEditingComplete: () {
-                //TODO save the value of price in sharedPreferences
+              onSaved: (value) {
+                if (value != null) {
+                  newCourse.price = double.parse(value);
+                }
               },
             ),
             MyTextFormField(
@@ -75,8 +90,10 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
 
                 return null;
               },
-              onEditingComplete: () {
-                //TODO save the value of desc in sharedPreferences
+              onSaved: (value) {
+                if (value != null) {
+                  newCourse.description = value;
+                }
               },
             ),
           ],

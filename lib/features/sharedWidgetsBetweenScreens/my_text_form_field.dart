@@ -10,7 +10,7 @@ class MyTextFormField extends StatefulWidget {
     this.isSecret = false,
     this.isNumber = false,
     this.isEmail = false,
-    this.onEditingComplete, this.onChanged,
+    this.onEditingComplete, this.onChanged, this.onSaved,
   });
 
   final TextEditingController myController;
@@ -21,6 +21,7 @@ class MyTextFormField extends StatefulWidget {
   final bool isEmail;
   final void Function()? onEditingComplete;
   final void Function(String)? onChanged;
+  final void Function(String?)? onSaved;
 
   @override
   State<MyTextFormField> createState() => _MyTextFormFieldState();
@@ -49,6 +50,7 @@ class _MyTextFormFieldState extends State<MyTextFormField> {
                 : null,
         onEditingComplete: widget.onEditingComplete,
         onChanged: widget.onChanged,
+        onSaved: widget.onSaved,
         decoration: widget.isSecret
             ? InputDecoration(
                 suffixIcon: Padding(

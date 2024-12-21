@@ -37,14 +37,7 @@ class MyMainAppBar extends StatelessWidget {
         // ],
       ),
       // drawer: const Drawer(),
-      body: InkWell(
-          onTap: () {
-            FocusScopeNode currNode = FocusScope.of(context);
-            if (currNode.focusedChild != null && !currNode.hasPrimaryFocus) {
-              FocusManager.instance.primaryFocus!.unfocus();
-            }
-          },
-          child: SingleChildScrollView(child: myBody)),
+      body: SingleChildScrollView(child: myBody),
       floatingActionButton: myFloatingButton,
       floatingActionButtonLocation: myFloatingButtonLocation,
     );
