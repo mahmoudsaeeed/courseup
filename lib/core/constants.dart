@@ -7,6 +7,10 @@ class MyPages {
   static const String myOnboardingScreen = "onboarding_screen";
   static const String myHomePage = 'home_page';
   static const String myAuthPage = 'auth_page';
+  static const String myViewPage = "view_profile";
+  static const String myUpdateProfilePage = "update_profile";
+  static const String myResetPassword = "resetPassword";
+  static const String myBottomNavigator = "myBottomNavigator";
   // static const String myHomePage = "/";
 }
 
@@ -21,6 +25,11 @@ class MyCustomFonts {
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 }
 
-// class MyCustomStyle {
+class MyKeys {
+  static const String currentPage = 'currPage';
+}
 
-// }
+class MyApiUrlEndpoints {
+  static const String baseUrl = "http://localhost:3000/";
+  static const String courseUploadEndPoint = "";
+}
