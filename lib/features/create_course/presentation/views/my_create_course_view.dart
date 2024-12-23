@@ -1,6 +1,6 @@
 import 'package:courseup/features/create_course/data/repositories/my_create_course_repo_impl.dart';
 import 'package:courseup/features/create_course/data/services/cloudinary_service.dart';
-import 'package:courseup/features/create_course/presentation/MyController/cubits/cubit/add_video_cubit.dart';
+import 'package:courseup/features/create_course/presentation/MyController/cubits/videoCubit/video_cubit.dart';
 import 'package:courseup/features/create_course/presentation/MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 import 'package:courseup/features/create_course/presentation/widgets/courseImage/my_create_course_image_container.dart';
 import 'package:courseup/features/create_course/presentation/widgets/courseInfo/my_create_course_form.dart';
@@ -36,7 +36,7 @@ class _MyCreateCourseViewState extends State<MyCreateCourseView> {
           ),
         ),
         BlocProvider(
-          create: (context) => AddVideoCubit(),
+          create: (context) => VideoCubit(),
         ),
       ],
       child: ChangeNotifierProvider<MyCourseImgProvider>(

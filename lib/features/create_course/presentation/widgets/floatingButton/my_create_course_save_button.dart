@@ -1,5 +1,8 @@
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 
 class MyCreateCourseSaveButton extends StatelessWidget {
   const MyCreateCourseSaveButton({
@@ -10,8 +13,7 @@ class MyCreateCourseSaveButton extends StatelessWidget {
   final GlobalKey<FormState> formState;
   @override
   Widget build(BuildContext context) {
-    // final res = BlocProvider.of<MyCourseDataCubit>(context);
-    // final imgUrl = Provider.of<MyCourseImgProvider>(context);
+    final res = BlocProvider.of<MyCourseDataCubit>(context);
     return SizedBox(
       // width: 200,
       child: MyButton(
@@ -20,10 +22,11 @@ class MyCreateCourseSaveButton extends StatelessWidget {
           //TODO get the data of title , price and desc here from sharedpreferences
 
           if (formState.currentState!.validate()) {
-            formState.currentState!.save();
+            // formState.currentState!.save();
 
-            // debugPrint(
-            //     "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${res.myCourse.imageUrl}");
+            debugPrint(
+                // "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${imgUrl}");
+                "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${res.myCourse.imageUrl}");
           }
           // Test.showNotWorkMsg(context);
         },

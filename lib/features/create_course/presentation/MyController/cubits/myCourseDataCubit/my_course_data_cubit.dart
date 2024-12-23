@@ -11,39 +11,39 @@ class MyCourseDataCubit extends Cubit<MyCourseDataState> {
 
   MyCourseDataCubit({required this.myRepo}) : super(MyCourseDataInitial()) {
     myCourse = MyCourse();
-
   }
 
   Future<void> uploadImage(String imgPath) async {
-
     //TODO  emit هشوف بديل ل الاستيت
     /*
     TODO المفروض ان الاستيت تتغير بالقيمة الجديد للكورس
      */
     emit(MyCourseDataLoading());
-      try {
-        final response = await myRepo.uploadCourseImage(imgPath);
-        response.fold(
-          (success) {
-            myCourse.imageUrl = imgPath;
-            emit(MyCourseDataSuccess(myCourse: myCourse));
-          },
-          (failed) {
-            emit(MyCourseDataFailed(errorMessage: "Image Not Found"));
-          },
-        );
-      } catch (e) {
-        emit(MyCourseDataFailed(errorMessage: e.toString()));
-      }
+    try {
+      final response = await myRepo.uploadCourseImage(imgPath);
+      response.fold(
+        (success) {
+          myCourse.imageUrl = imgPath;
+          emit(MyCourseDataSuccess(myCourse: myCourse));
+        },
+        (failed) {
+          emit(MyCourseDataFailed(errorMessage: "Image Not Found"));
+        },
+      );
+    } catch (e) {
+      emit(MyCourseDataFailed(errorMessage: e.toString()));
     }
-  
+  }
+
+  void takeImg(String imageUrl) {
+    myCourse.imageUrl = imageUrl;
+  }
 
   void takeTitle(String title) {
     emit(MyCourseDataLoading());
-      myCourse.title = title;
-      emit(MyCourseDataSuccess(myCourse: myCourse));
-    } 
-  
+    myCourse.title = title;
+    emit(MyCourseDataSuccess(myCourse: myCourse));
+  }
 
   void takePrice(double? price) {
     emit(MyCourseDataLoading());
@@ -74,5 +74,4 @@ class MyCourseDataCubit extends Cubit<MyCourseDataState> {
       emit(MyCourseDataFailed(errorMessage: "title not found"));
     }
   }
-
 }
