@@ -18,11 +18,11 @@ class MyCreateCourseFloatingRow extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ///////////////
+          //^  =====   Save Button =====  ^\\
           Expanded(
             child: MyCreateCourseSaveButton(formState: formState),
           ),
-          ///////////////
+          //^  ======     add videos icon  ===== ^\\
           IconButton(
             onPressed: () async {
               final picker = await FilePicker.platform.pickFiles(

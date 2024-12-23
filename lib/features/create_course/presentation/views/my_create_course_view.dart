@@ -1,5 +1,6 @@
 import 'package:courseup/features/create_course/data/repositories/my_create_course_repo_impl.dart';
 import 'package:courseup/features/create_course/data/services/cloudinary_service.dart';
+import 'package:courseup/features/create_course/presentation/MyController/cubits/cubit/add_video_cubit.dart';
 import 'package:courseup/features/create_course/presentation/MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 import 'package:courseup/features/create_course/presentation/widgets/courseImage/my_create_course_image_container.dart';
 import 'package:courseup/features/create_course/presentation/widgets/courseInfo/my_create_course_form.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../MyController/providers/my_course_img_provider.dart';
+
 class MyCreateCourseView extends StatefulWidget {
   const MyCreateCourseView({super.key});
 
@@ -24,12 +26,19 @@ class _MyCreateCourseViewState extends State<MyCreateCourseView> {
   @override
   Widget build(BuildContext context) {
     //? MyCourseDataCubit is provided here
-    return BlocProvider<MyCourseDataCubit>(
-      create: (context) => MyCourseDataCubit(
-        myRepo: MyCreateCourseRepoImpl(
-          cloudinaryService: CloudinaryService(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MyCourseDataCubit>(
+          create: (context) => MyCourseDataCubit(
+            myRepo: MyCreateCourseRepoImpl(
+              cloudinaryService: CloudinaryService(),
+            ),
+          ),
         ),
-      ),
+        BlocProvider(
+          create: (context) => AddVideoCubit(),
+        ),
+      ],
       child: ChangeNotifierProvider<MyCourseImgProvider>(
         create: (context) => MyCourseImgProvider(),
         child: MyMainAppBar(
@@ -40,11 +49,9 @@ class _MyCreateCourseViewState extends State<MyCreateCourseView> {
               MyCreateCourseForm(formState: formState),
               const MyCreateCourseVideosAdded(),
               const SizedBox(
-                  height: 70,
-                ),
+                height: 70,
+              ),
             ],
-     
-                   
           ),
           myFloatingButton: MyCreateCourseFloatingRow(formState: formState),
           myFloatingButtonLocation: FloatingActionButtonLocation.centerFloat,
