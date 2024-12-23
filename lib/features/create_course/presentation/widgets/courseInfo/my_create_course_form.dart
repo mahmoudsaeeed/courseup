@@ -1,9 +1,7 @@
-import 'package:courseup/features/create_course/data/models/my_course.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../sharedWidgetsBetweenScreens/my_text_form_field.dart';
-import '../../MyController/provider/my_course_updating_data.dart';
+import '../../MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 
 class MyCreateCourseForm extends StatefulWidget {
   const MyCreateCourseForm({super.key, required this.formState});
@@ -30,14 +28,13 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
 
   @override
   Widget build(BuildContext context) {
-    final myCourseProvided = context.read<MyCourseUpdatingData>();
-    MyCourse newCourse = MyCourse();
+    final myUploadingDataCubit = context.read<MyCourseDataCubit>();
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15),
       child: Form(
         key: widget.formState,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
-        
+
         child: Column(
           children: [
             MyTextFormField(
@@ -52,10 +49,10 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
               },
               onSaved: (value) {
                 if (value != null) {
-                  newCourse.title = value;
+                  myUploadingDataCubit.takeTitle(value);
                   debugPrint(
-                      "course uploaded his data is name = ${newCourse.title} || desc = ${newCourse.description}  ||   price = ${newCourse.price}");
-                  
+                      "course uploaded his data is name = ${myUploadingDataCubit.myCourse.title} || desc = ${myUploadingDataCubit.myCourse.description}  ||   price = ${myUploadingDataCubit.myCourse.price}");
+
                   // myCourseProvided.uploadData(newCourse);
                 }
               },
@@ -76,7 +73,8 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
               },
               onSaved: (value) {
                 if (value != null) {
-                  newCourse.price = double.parse(value);
+                  myUploadingDataCubit.takePrice(double.parse(value));
+                  debugPrint("price ok");
                 }
               },
             ),
@@ -87,12 +85,13 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                 if (value!.isEmpty) {
                   return "Please Enter Course's description";
                 }
-
                 return null;
               },
               onSaved: (value) {
                 if (value != null) {
-                  newCourse.description = value;
+                  myUploadingDataCubit.takeDescription(value);
+                                    debugPrint("disc ok");
+
                 }
               },
             ),

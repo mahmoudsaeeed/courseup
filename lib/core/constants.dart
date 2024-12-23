@@ -25,8 +25,11 @@ class MyCustomFonts {
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold);
 }
 
+/// [MyKeys] is a calss which has all keys stored in sharedPreferences
 class MyKeys {
   static const String currentPage = 'currPage';
+  /// [myCourseImg] is a key that reflect on imgUrl caching in shared preferences
+  static const String myCourseImg = 'courseImg';
 }
 
 class MyApiUrlEndpoints {

@@ -1,5 +1,4 @@
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
-import 'package:courseup/test.dart';
 import 'package:flutter/material.dart';
 
 class MyCreateCourseSaveButton extends StatelessWidget {
@@ -11,6 +10,8 @@ class MyCreateCourseSaveButton extends StatelessWidget {
   final GlobalKey<FormState> formState;
   @override
   Widget build(BuildContext context) {
+    // final res = BlocProvider.of<MyCourseDataCubit>(context);
+    // final imgUrl = Provider.of<MyCourseImgProvider>(context);
     return SizedBox(
       // width: 200,
       child: MyButton(
@@ -20,8 +21,11 @@ class MyCreateCourseSaveButton extends StatelessWidget {
 
           if (formState.currentState!.validate()) {
             formState.currentState!.save();
+
+            // debugPrint(
+            //     "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${res.myCourse.imageUrl}");
           }
-          Test.showNotWorkMsg(context);
+          // Test.showNotWorkMsg(context);
         },
       ),
     );
