@@ -1,10 +1,10 @@
 import 'package:courseup/features/create_course/data/repositories/my_create_course_repo_impl.dart';
 import 'package:courseup/features/create_course/data/services/cloudinary_service.dart';
 import 'package:courseup/features/create_course/presentation/MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
+import 'package:courseup/features/create_course/presentation/widgets/courseImage/my_create_course_image_container.dart';
+import 'package:courseup/features/create_course/presentation/widgets/courseInfo/my_create_course_form.dart';
 import 'package:courseup/features/create_course/presentation/widgets/courseVideos/my_create_course_videos_added.dart';
 import 'package:courseup/features/create_course/presentation/widgets/floatingButton/my_create_course_floating_row.dart';
-import 'package:courseup/features/create_course/presentation/widgets/courseInfo/my_create_course_form.dart';
-import 'package:courseup/features/create_course/presentation/widgets/courseImage/my_create_course_image_container.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_main_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,11 +38,13 @@ class _MyCreateCourseViewState extends State<MyCreateCourseView> {
             children: [
               const MyCourseImageContainer(),
               MyCreateCourseForm(formState: formState),
+              const MyCreateCourseVideosAdded(),
               const SizedBox(
-                  // color: Colors.amber,
-                  height: 300,
-                  child: MyCreateCourseVideosAdded()),
+                  height: 70,
+                ),
             ],
+     
+                   
           ),
           myFloatingButton: MyCreateCourseFloatingRow(formState: formState),
           myFloatingButtonLocation: FloatingActionButtonLocation.centerFloat,
