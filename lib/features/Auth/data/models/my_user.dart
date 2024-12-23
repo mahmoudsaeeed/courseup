@@ -5,11 +5,17 @@ class MyUser extends Equatable {
   final String userId;
   final String email;
   final String name;
+  final String profileImage;
+  final String address;
+  final String phoneNumber;
 
   const MyUser({
     this.userId = '',
     this.email = '',
     this.name = '',
+    this.profileImage = '',
+    this.address = '',
+    this.phoneNumber = '',
   });
 
   // static const emptyUser = MyUser(
@@ -22,11 +28,17 @@ class MyUser extends Equatable {
     String? userId,
     String? email,
     String? name,
+    String? profileImage,
+    String? address,
+    String? phoneNumber,
   }) {
     return MyUser(
       userId: userId ?? this.userId,
       email: email ?? this.email,
       name: name ?? this.name,
+      profileImage: profileImage ?? this.profileImage,
+      address: address ?? this.address,
+      phoneNumber: phoneNumber ?? this.phoneNumber,
     );
   }
 
@@ -35,12 +47,21 @@ class MyUser extends Equatable {
       userId: userId,
       email: email,
       name: name,
+      address: address,
+      phoneNumber: phoneNumber,
+      profileImage: profileImage,
     );
   }
 
-  MyUser fromEntity(MyUserEntity entity) {
+  factory MyUser.fromEntity(MyUserEntity entity) {
     return MyUser(
-        userId: entity.userId, email: entity.email, name: entity.name);
+      userId: entity.userId,
+      email: entity.email,
+      name: entity.name,
+      address: entity.address ?? '',
+      phoneNumber: entity.phoneNumber ?? '',
+      profileImage: entity.profileImage ?? '',
+    );
   }
 
   @override

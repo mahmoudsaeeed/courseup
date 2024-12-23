@@ -13,8 +13,8 @@ class OnboardingSkipButton extends StatelessWidget {
               onPressed: () {
                 controller.jumpToPage(2);
               },
-              child: const Text('Skip'),
               style: TextButton.styleFrom(foregroundColor: MyColors.myPrimaryColor),
+              child: const Text('Skip'),
             ),
           );
   }

@@ -1,8 +1,10 @@
 import 'package:courseup/features/Auth/SignUp/presentation/widgets/my_signup_btn.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_password_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../../sharedPresentation/sharedWidgets/my_form_input_field.dart';
+import '../../../../sharedWidgetsBetweenScreens/my_email_text_form.dart';
+import '../../../../sharedWidgetsBetweenScreens/my_text_form_field.dart';
 
 class MySignupForm extends StatefulWidget {
   const MySignupForm({super.key});
@@ -30,8 +32,6 @@ class _MySignupFormState extends State<MySignupForm> {
 
   @override
   Widget build(BuildContext context) {
-    RegExp myEmailExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return Form(
         key: _formState,
         // autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -48,60 +48,25 @@ class _MySignupFormState extends State<MySignupForm> {
                 }
               },
             ),
-            MyTextFormField(
-              myController: myEmailController,
-              myHint: "Email",
-              myValidator: (input) {
-                if (input!.isEmpty) {
-                  return "please Enter your email";
-                } else if (!myEmailExp.hasMatch(input)) {
-                  return "Please Enter valid email";
+            MyEmailTextForm(myEmail: myEmailController),
+            MyPasswordTextForm(
+              myPassword: myPasswordController,
+              checkPassword: true,
+            ),
+            MyPasswordTextForm(
+              myPassword: mySecondPasswordController,
+              myHint: "Repeat password",
+              checkPassword: true,
+              isRepeatedPassword: true,
+              myRepeatedValidator: (value) {
+                if (value != myPasswordController.text) {
+                  return "Passwords doesn't matches";
                 } else {
                   return null;
                 }
               },
             ),
-            MyTextFormField(
-              myController: myPasswordController,
-              myHint: "Password",
-              isSecret: true,
-              myValidator: (input) {
-                RegExp passwordRegex = RegExp(
-                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-
-                if (input!.isEmpty) {
-                  return "please Enter your password";
-                } else if (input.length < 4) {
-                  return "password should be more than 3 char";
-                } else if (!passwordRegex.hasMatch(input)) {
-                  return "Weak Password";
-                } else {
-                  return null;
-                }
-              },
-            ),
-            MyTextFormField(
-              myController: mySecondPasswordController,
-              myHint: "repeat Password",
-              isSecret: true,
-              myValidator: (input) {
-                RegExp passwordRegex = RegExp(
-                    r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$');
-
-                if (input!.isEmpty) {
-                  return "please Enter your password";
-                } else if (input.length < 4) {
-                  return "password should be more than 3 char";
-                } else if (!passwordRegex.hasMatch(input)) {
-                  return "Weak Password";
-                } else if (input != myPasswordController.text.trim()) {
-                  return "Not matched password";
-                } else {
-                  return null;
-                }
-              },
-            ),
-            const Gap(20),
+            const Gap(30),
             MySignupBtn(
               formState: _formState,
               myButtonText: "SignUp",

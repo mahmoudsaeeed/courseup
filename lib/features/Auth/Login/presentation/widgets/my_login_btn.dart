@@ -1,8 +1,8 @@
-
 import 'dart:developer';
 
-import 'package:courseup/core/utils/my_colors.dart';
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,44 +22,34 @@ class MyLoginBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      // margin: const EdgeInsets.all(5),
-      width: MediaQuery.of(context).size.width,
-      height: 50,
-    
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: MyColors.secondaryColor,
-          alignment: Alignment.center,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-        ),
-        onPressed: () {
-          if (formState.currentState!.validate()) {
-            debugPrint("validation success");
-            // MyUser myUser = MyUser(email: myEmail.text , );
-            // BlocProvider.of<AuthCubit>(context).login(
-            //   myUser, //!  change to myEmail not myUser
-            //   myPassword.text,
-            // );
-            //TODO check if data is correct and stored
-            //TODO navigate to home page
-            log(myEmail.text);
-            log(myPassword.text);
-              BlocProvider.of<AuthCubit>(context)
-                .login(myEmail.text.trim(), myPassword.text.trim());
-            
-          } else {
-            debugPrint("Validation error");
+    return MyButton(
+      onPressed: () async {
+        if (formState.currentState!.validate()) {
+
+          //TODO check if data is correct and stored
+          //TODO navigate to home page
+          log(myEmail.text);
+          log(myPassword.text);
+          debugPrint("========  myloginbtn --  before Changing cubit state here ===========");
+          await BlocProvider.of<AuthCubit>(context)
+              .login(myEmail.text.trim(), myPassword.text);
+          debugPrint("========  myloginbtn --  after Changing cubit state here ===========");
+          final cubit = context.read<AuthCubit>();
+          if (cubit.state is AuthAuthenticated) {
+            Navigator.pushNamedAndRemoveUntil(context, MyPages.myHomePage, (route) => false);
           }
-        },
-        child: Text(
-          myButtonText,
-          style: const TextStyle(color: Colors.white),
-        ),
-      ),
+
+          // Navigator.push(context, MaterialPageRoute(
+          //   builder: (context) {
+          //     return const MyCheckLoginWidget();
+            // },
+          // ));
+          // Navigator.pushReplacementNamed(context, MyPages.myBottomNavigator);
+        } else {
+          debugPrint("Validation error");
+        }
+      },
+      buttonName: myButtonText,
     );
   }
 }

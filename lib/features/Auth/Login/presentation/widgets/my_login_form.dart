@@ -1,6 +1,8 @@
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/utils/my_colors.dart';
 import 'package:courseup/features/Auth/Login/presentation/widgets/my_login_btn.dart';
-import 'package:courseup/features/Auth/sharedPresentation/sharedWidgets/my_form_input_field.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_email_text_form.dart';
+import 'package:courseup/features/sharedWidgetsBetweenScreens/my_password_text_form.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -26,50 +28,24 @@ class _MyLoginFormState extends State<MyLoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    RegExp myEmailExp = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     return Form(
         key: _formState,
         child: Column(
           children: [
-            MyTextFormField(
-              myController: myEmail,
-              myHint: "Email",
-              myValidator: (input) {
-                if (input!.isEmpty) {
-                  return "please Enter your email";
-                } else if (!myEmailExp.hasMatch(input)) {
-                  return "Please Enter valid email";
-                } else {
-                  return null;
-                }
-              },
-            ),
-            MyTextFormField(
-              myController: myPassword,
-              myHint: "Password",
-              isSecret: true,
-              myValidator: (input) {
-                if (input!.isEmpty) {
-                  return "please Enter your password";
-                } else {
-                  return null;
-                }
-              },
-            ),
+            MyEmailTextForm(myEmail: myEmail),
+            MyPasswordTextForm(myPassword: myPassword),
             // const Gap(10),
             Row(
               children: [
                 TextButton(
                   onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const AlertDialog(
-                        title: Text("لسه مشتغلتش"),
-                      ),
-                    );
+
+                    Navigator.pushNamed(context, MyPages.myResetPassword);
                   },
-                  child: Text("Forgot password?", style: TextStyle(color: MyColors.myPrimaryColor),),
+                  child: Text(
+                    "Forgot password?",
+                    style: TextStyle(color: MyColors.myPrimaryColor),
+                  ),
                 ),
               ],
             ),
