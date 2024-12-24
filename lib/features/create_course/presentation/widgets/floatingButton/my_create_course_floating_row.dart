@@ -1,5 +1,4 @@
-import 'package:courseup/core/utils/my_colors.dart';
-import 'package:courseup/test.dart';
+import 'package:courseup/features/create_course/presentation/widgets/floatingButton/my_create_course_add_video_button.dart';
 import 'package:flutter/material.dart';
 
 import 'my_create_course_save_button.dart';
@@ -15,22 +14,13 @@ class MyCreateCourseFloatingRow extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ///////////////
+          //^  =====   Save Button =====  ^\\
           Expanded(
-            child: MyCreateCourseSaveButton(formState : formState),
+            child: MyCreateCourseSaveButton(formState: formState),
           ),
-          ///////////////
-          IconButton(
-            onPressed: () {
-              Test.showNotWorkMsg(context);
-            },
-            icon: const Icon(Icons.add),
-            color: MyColors.myThirdColor,
-            style: ButtonStyle(
-              backgroundColor:
-                  WidgetStatePropertyAll(MyColors.mySecondaryColor),
-            ),
-          )
+          //^  ======     add videos icon  ===== ^\\
+
+          const MyCreateCourseAddVideoButton(),
         ],
       ),
     );

@@ -20,8 +20,9 @@ class MyViewProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider<ProfileCubit>.value(value: ProfileCubit(
-        userRepository: UserProfileRepoImpl(
+      body: BlocProvider<ProfileCubit>.value(
+        value: ProfileCubit(
+          userRepository: UserProfileRepoImpl(
             firestore: FirebaseFirestore.instance,
             cloudinaryService: CloudinaryService(),
           ),
@@ -40,8 +41,12 @@ class MyViewProfile extends StatelessWidget {
                   MyProfileImage(
                     user: state.user,
                   ),
-                  MyViewProfileWidget(myUser: state.user,),
-                  MyEditButton(myUser: state.user,),
+                  MyViewProfileWidget(
+                    myUser: state.user,
+                  ),
+                  MyEditButton(
+                    myUser: state.user,
+                  ),
                   Positioned(
                     top: MediaQuery.of(context).size.height * 0.05,
                     left: MediaQuery.of(context).size.width * 0.05,

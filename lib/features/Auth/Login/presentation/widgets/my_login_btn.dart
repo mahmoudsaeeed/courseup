@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:courseup/core/constants.dart';
 import 'package:courseup/features/Auth/sharedPresentation/cubit/auth_cubit.dart';
 import 'package:courseup/features/sharedWidgetsBetweenScreens/my_button.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MyLoginBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MyButton(
-      onPressed: () {
+      onPressed: () async {
         if (formState.currentState!.validate()) {
 
           //TODO check if data is correct and stored
@@ -30,10 +31,13 @@ class MyLoginBtn extends StatelessWidget {
           log(myEmail.text);
           log(myPassword.text);
           debugPrint("========  myloginbtn --  before Changing cubit state here ===========");
-          BlocProvider.of<AuthCubit>(context)
+          await BlocProvider.of<AuthCubit>(context)
               .login(myEmail.text.trim(), myPassword.text);
           debugPrint("========  myloginbtn --  after Changing cubit state here ===========");
-          
+          final cubit = context.read<AuthCubit>();
+          if (cubit.state is AuthAuthenticated) {
+            Navigator.pushNamedAndRemoveUntil(context, MyPages.myHomePage, (route) => false);
+          }
 
           // Navigator.push(context, MaterialPageRoute(
           //   builder: (context) {

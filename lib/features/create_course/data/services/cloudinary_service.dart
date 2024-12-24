@@ -11,9 +11,9 @@ class CloudinaryService {
     apiSecret: dotenv.env['CLOUDINARY_API_SECRET'] ?? '',
     cloudName: dotenv.env['CLOUDINARY_CLOUD_NAME'] ?? '',
   );
-  Future<Either<Success<String?>, FailureMessage>> uploadCourseAssets(String filePath) async {
+  Future<Either<Success<String?>, FailureMessage>> uploadCourseImage(String imgPath) async {
     final response = await _cloudinary.upload(
-        file: filePath,
+        file: imgPath,
         folder: dotenv.env['CLOUDINARY_FOLDER'],
         resourceType: CloudinaryResourceType.auto,
         progressCallback: (count, total) {
