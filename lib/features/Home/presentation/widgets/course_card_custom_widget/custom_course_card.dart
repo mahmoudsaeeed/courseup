@@ -2,60 +2,67 @@ import 'package:flutter/material.dart';
 
 import 'custom_rating_bar.dart';
 
-class Course extends StatelessWidget {
-  final String Name;
-  final String Description;
-  final int VideoNums;
-  final String ImagePath;
+class CustomCourseCard extends StatelessWidget {
+  final String name;
+  final String description;
+  final int videoNums;
+  final String imagePath;
   final int ratingCount;
   final double rating;
-  const Course({super.key, required this.Name, required this.Description, required this.VideoNums, required this.ImagePath, required this.ratingCount, required this.rating});
+  const CustomCourseCard(
+      {super.key,
+      required this.name,
+      required this.description,
+      required this.videoNums,
+      required this.imagePath,
+      required this.ratingCount,
+      required this.rating});
   @override
   Widget build(BuildContext context) {
     return Container(
         color: Colors.white,
-        padding: EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.only(left: 10),
         height: 150,
         width: 500,
-        child:
-        Card(
+        child: Card(
           color: Colors.white,
           elevation: 7,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: 100,
                   height: 110,
                   child: Image.network(
-                    "$ImagePath",
+                    imagePath,
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 17),
+                const SizedBox(width: 17),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "$Name",
-                        style: TextStyle(
-                          color: Color(0xfff0D9BC9),
+                        name,
+                        style: const TextStyle(
+                          color: Color.fromARGB(255, 13, 155, 201),
                           fontWeight: FontWeight.bold,
                           fontSize: 16,
                         ),
                       ),
-                      SizedBox(height: 5),
+                      const SizedBox(height: 5),
                       Text(
-                        "$Description",
-                        style: TextStyle(color: Colors.grey,fontSize: 10),
+                        description,
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 10),
                       ),
-                      SizedBox(height: 8),
+                      const SizedBox(height: 8),
                       RatingBar(
                         rating: rating,
                         ratingCount: ratingCount,
@@ -63,21 +70,24 @@ class Course extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text("$VideoNums video",style: TextStyle(
-                      fontWeight: FontWeight.w100,
-                      fontSize: 11,
-                    ),),
-                    SizedBox(height:3),
-                    Container(
+                    Text(
+                      "$videoNums video",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w100,
+                        fontSize: 11,
+                      ),
+                    ),
+                    const SizedBox(height: 3),
+                    SizedBox(
                       width: 70,
                       child: MaterialButton(
                         textColor: Colors.lightBlue,
                         onPressed: () {},
-                        child: Text("Play"),
+                        child: const Text("Play"),
                       ),
                     ),
                   ],

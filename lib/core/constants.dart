@@ -27,7 +27,9 @@ class MyCustomFonts {
 
 /// [MyKeys] is a calss which has all keys stored in sharedPreferences
 class MyKeys {
+  /// [currentPage] used in shared preferences
   static const String currentPage = 'currPage';
+
   /// [myCourseImg] is a key that reflect on imgUrl caching in shared preferences
   static const String myCourseImg = 'courseImg';
 }
@@ -36,4 +38,19 @@ class MyApiUrlEndpoints {
   static const String baseUrl = "http://localhost:3000/";
   static const String courseUploadEndPoint = "";
   static const String courseGetEndPoint = "";
+}
+
+class MyDBKeys {
+  static const String courseId = 'courseId';
+  static const String title = 'title';
+  static const String description = 'description';
+  static const String imageUrl = 'image';
+  static const String videosUrl = 'videos';
+  static const String price = 'price';
+  static const String numberOfRatings = 'numberOfRatings';
+  static const String status = 'status';
+  static const String publisherId = 'publisher';
+  static const String category = 'category';
+  static const String rate = 'rate';
+  static const String numberOfBuyers = 'numberOfBuyers';
 }

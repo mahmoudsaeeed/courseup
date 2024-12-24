@@ -34,7 +34,9 @@ class MyCreateCourseAddVideoButton extends StatelessWidget {
             //? the file must have a path
               picker.files.map((file) => file.path!).toList();
           if (videoPaths.isNotEmpty) {
+            //? display videos in page
             vidCubit.addVideo(videoPaths);
+            //? save videos in course object
             myCourseCubit.takeVideos(videoPaths);
           }
         }

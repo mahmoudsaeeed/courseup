@@ -36,13 +36,13 @@ class MyCreateCourseRepoImpl extends MyCreateCourseRepoInterface {
         },
       );
     }
-    
+    //TODO upload course in db
       @override
       Future<Either<Success<String?>, FailureMessage>> uploadCourse(MyCourse course) {
     // TODO: implement uploadCourse
     throw UnimplementedError();
       }
-    
+    //TODO upload videos in cloudinary
       @override
       Future<Either<Success<String?>, FailureMessage>> uploadVideos(List<String> videosUrl) {
     // TODO: implement uploadVideos
