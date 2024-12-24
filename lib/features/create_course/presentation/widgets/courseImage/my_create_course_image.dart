@@ -1,7 +1,9 @@
 import 'dart:io';
 
+import 'package:courseup/features/create_course/presentation/MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 import 'package:courseup/features/create_course/presentation/MyController/providers/my_course_img_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 
@@ -10,7 +12,10 @@ class MyCreateCourseImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mySaveImgProvider = Provider.of<MyCourseImgProvider>(context,listen: false);
+    final mySaveImgProvider =
+        Provider.of<MyCourseImgProvider>(context, listen: false);
+    final myCourseCubit =
+        BlocProvider.of<MyCourseDataCubit>(context, listen: false);
     return InkWell(onTap: () async {
       final ImagePicker picker = ImagePicker();
       final XFile? pickedFile = await picker.pickImage(
@@ -18,6 +23,7 @@ class MyCreateCourseImage extends StatelessWidget {
       );
       if (pickedFile != null) {
         mySaveImgProvider.saveImageUrl(path: pickedFile.path);
+        myCourseCubit.takeImg(pickedFile.path);
         // myUploadBlocProvider.uploadImage(pickedFile.path.toString());
       }
     }, child: Consumer<MyCourseImgProvider>(

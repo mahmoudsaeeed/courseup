@@ -47,14 +47,15 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                   return null;
                 }
               },
-              onSaved: (value) {
-                if (value != null) {
+              onChanged: (value) {
                   myUploadingDataCubit.takeTitle(value);
                   debugPrint(
                       "course uploaded his data is name = ${myUploadingDataCubit.myCourse.title} || desc = ${myUploadingDataCubit.myCourse.description}  ||   price = ${myUploadingDataCubit.myCourse.price}");
 
                   // myCourseProvided.uploadData(newCourse);
-                }
+              },
+              onSaved: (value) {
+                
               },
             ),
             MyTextFormField(
@@ -71,12 +72,19 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                 }
                 return null;
               },
-              onSaved: (value) {
-                if (value != null) {
-                  myUploadingDataCubit.takePrice(double.parse(value));
-                  debugPrint("price ok");
-                }
+
+              onChanged: (value) {
+                myUploadingDataCubit.takePrice(double.parse(value));
+                  debugPrint(
+                      "course uploaded his data is name = ${myUploadingDataCubit.myCourse.title} || desc = ${myUploadingDataCubit.myCourse.description}  ||   price = ${myUploadingDataCubit.myCourse.price}");
+
               },
+              // onSaved: (value) {
+              //   if (value != null) {
+              //     myUploadingDataCubit.takePrice(double.parse(value));
+              //     debugPrint("price ok");
+              //   }
+              // },
             ),
             MyTextFormField(
               myController: myCourseDesc,
@@ -87,12 +95,18 @@ class _MyCreateCourseFormState extends State<MyCreateCourseForm> {
                 }
                 return null;
               },
-              onSaved: (value) {
-                if (value != null) {
-                  myUploadingDataCubit.takeDescription(value);
-                                    debugPrint("disc ok");
+              // onSaved: (value) {
+              //   if (value != null) {
+              //     myUploadingDataCubit.takeDescription(value);
+              //                       debugPrint("disc ok");
 
-                }
+              //   }
+              // },
+              onChanged: (value) {
+                myUploadingDataCubit.takeDescription(value);
+                  debugPrint(
+                      "course uploaded his data is name = ${myUploadingDataCubit.myCourse.title} || desc = ${myUploadingDataCubit.myCourse.description}  ||   price = ${myUploadingDataCubit.myCourse.price}");
+
               },
             ),
           ],
