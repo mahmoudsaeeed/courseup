@@ -14,6 +14,8 @@ class MyCreateCourseSaveButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final res = BlocProvider.of<MyCourseDataCubit>(context);
+    debugPrint(
+        "\n========     MyCreateCourseSaveButton  is rebuild    =======\n");
     return SizedBox(
       // width: 200,
       child: MyButton(
@@ -27,6 +29,22 @@ class MyCreateCourseSaveButton extends StatelessWidget {
             debugPrint(
                 // "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${imgUrl}");
                 "name : ${res.myCourse.title}\ndesc : ${res.myCourse.description}\nprice : ${res.myCourse.price}\nimgUrl = ${res.myCourse.imageUrl}");
+
+            for (var video in res.myCourse.videosUrl) {
+              debugPrint("video  : $video");
+            }
+
+            if (res.myCourse.videosUrl.every((video) {
+                  if (video == "" || video.isEmpty) {
+                    return false;
+                  } else {
+                    return true;
+                  }
+                }) &&
+                res.myCourse.imageUrl != "") {
+                  //TODO send videos to cloudinary
+                  //TODO send myCourse to DB
+                }
           }
           // Test.showNotWorkMsg(context);
         },

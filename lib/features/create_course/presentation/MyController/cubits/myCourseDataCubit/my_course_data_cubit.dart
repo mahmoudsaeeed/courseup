@@ -1,4 +1,5 @@
 import 'package:courseup/features/create_course/domain/repositories/my_create_course_repo_interface.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../data/models/my_course.dart';
@@ -40,38 +41,40 @@ class MyCourseDataCubit extends Cubit<MyCourseDataState> {
   }
 
   void takeTitle(String title) {
-    emit(MyCourseDataLoading());
+    // emit(MyCourseDataLoading());
     myCourse.title = title;
-    emit(MyCourseDataSuccess(myCourse: myCourse));
+    // emit(MyCourseDataSuccess(myCourse: myCourse));
   }
 
   void takePrice(double? price) {
-    emit(MyCourseDataLoading());
+    // emit(MyCourseDataLoading());
     if (price != null) {
       myCourse.price = price;
-      emit(MyCourseDataSuccess(myCourse: myCourse));
+      // emit(MyCourseDataSuccess(myCourse: myCourse));
     } else {
-      emit(MyCourseDataFailed(errorMessage: "title not found"));
+      // emit(MyCourseDataFailed(errorMessage: "title not found"));
     }
   }
 
   void takeDescription(String? description) {
-    emit(MyCourseDataLoading());
+    // emit(MyCourseDataLoading());
     if (description != null) {
       myCourse.description = description;
-      emit(MyCourseDataSuccess(myCourse: myCourse));
+      // emit(MyCourseDataSuccess(myCourse: myCourse));
     } else {
-      emit(MyCourseDataFailed(errorMessage: "title not found"));
+      // emit(MyCourseDataFailed(errorMessage: "title not found"));
     }
   }
 
-  void uploadVideos(List<String>? vidoesUrl) {
-    emit(MyCourseDataLoading());
+  void takeVideos(List<String>? vidoesUrl) {
+    // emit(MyCourseDataLoading());
     if (vidoesUrl != null) {
       myCourse.videosUrl = vidoesUrl;
-      emit(MyCourseDataSuccess(myCourse: myCourse));
+
+      debugPrint("vidos is ${vidoesUrl.map((vid)=>vid.toString())},");
+      // emit(MyCourseDataSuccess(myCourse: myCourse));
     } else {
-      emit(MyCourseDataFailed(errorMessage: "title not found"));
+      // emit(MyCourseDataFailed(errorMessage: "title not found"));
     }
   }
 }

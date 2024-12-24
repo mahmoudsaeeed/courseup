@@ -7,6 +7,9 @@ part 'video_state.dart';
 
 class VideoCubit extends Cubit<List<String?>> {
   VideoCubit() : super([]);
+
+  /// when press on add button , choosing the videos , then this method executed
+  /// it emit list of videos path to listeners
   void addVideo(List<String?> videoPaths) {
     emit([...videoPaths, ...state]);
     log(videoPaths.toString());

@@ -1,3 +1,4 @@
+import 'package:courseup/features/create_course/presentation/MyController/cubits/myCourseDataCubit/my_course_data_cubit.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,10 @@ class MyCreateCourseAddVideoButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final vidCubit = context.read<VideoCubit>();
+    final vidCubit = BlocProvider.of<VideoCubit>(context ,listen: false);
+    // final vidCubit = context.read<VideoCubit>();
+    final myCourseCubit = BlocProvider.of<MyCourseDataCubit>(context ,listen: false);
+    // final myCourseCubit = context.read<MyCourseDataCubit>();
 
     return IconButton(
       onPressed: () async {
@@ -26,10 +30,12 @@ class MyCreateCourseAddVideoButton extends StatelessWidget {
           ],
         );
         if (picker != null) {
-          List<String?> videoPaths =
-              picker.files.map((file) => file.path).toList();
+          List<String> videoPaths =
+            //? the file must have a path
+              picker.files.map((file) => file.path!).toList();
           if (videoPaths.isNotEmpty) {
             vidCubit.addVideo(videoPaths);
+            myCourseCubit.takeVideos(videoPaths);
           }
         }
       },
