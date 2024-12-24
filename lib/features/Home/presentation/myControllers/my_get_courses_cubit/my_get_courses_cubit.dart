@@ -15,7 +15,7 @@ class MyGetCourseCubit extends Cubit<MyGetCoursesState> {
       final myData = await myRepo.getAllCourses();
       myData.fold(
         (success) {
-          emit(MyGetCoursesSuccess(myData: success.value as List<MyCourse>));
+          emit(MyGetCoursesSuccess(myData: success));
         },
         (failed) {
           emit(

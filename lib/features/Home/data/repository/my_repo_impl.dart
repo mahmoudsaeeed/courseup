@@ -12,16 +12,16 @@ class MyRepoImpl extends MyRepoInterface {
 
   /// get data list or error
   @override
-  Future<Either<Success<List>, FailureMessage>> getAllCourses() async {
+  Future<Either<List<MyCourse>, FailureMessage>> getAllCourses() async {
     final response = await _myGetCoursesApiService.getAllCourses();
-    List myData;
+    List<MyCourse> myData;
     return response.fold(
       (success) {
         final List myDataBeforeHandel = success.value.data;
-        // myData = myDataBeforeHandel.map(
-        //   (map) => MyCourse.fromJson(map),
-        // );
-        return left(success.value.data);
+        myData = myDataBeforeHandel.map(
+          (courseJson) => MyCourse.fromJson(courseJson)
+        ).toList();
+        return left(myData);
       },
       (failed) {
         return right(FailureMessage(failureMessage: failed.toString()));
