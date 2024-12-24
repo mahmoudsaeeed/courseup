@@ -1,7 +1,7 @@
 import 'dart:developer';
 
 import 'package:cloudinary/cloudinary.dart';
-import 'package:courseup/features/Auth/shared/error/result.dart';
+import 'package:courseup/core/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 

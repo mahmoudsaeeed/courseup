@@ -1,29 +1,28 @@
 import 'package:courseup/core/constants.dart';
 import 'package:courseup/core/error/result.dart';
-import 'package:courseup/features/create_course/data/models/my_course.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-class MyUploadCourseApiService {
+class MyGetCoursesApiService {
   late Dio myDio;
-  MyUploadCourseApiService() {
+  MyGetCoursesApiService() {
     BaseOptions myOptions = BaseOptions(
       baseUrl: MyApiUrlEndpoints.baseUrl,
     );
     myDio = Dio(myOptions);
   }
 
-  Future<Either<Success<Response>, Failure>> uploadCourse(MyCourse myCourse) async{
+  Future<Either<Success<Response>, FailureMessage>> getAllCourses() async{
     try {
     
-      final Response response = await myDio.post(MyApiUrlEndpoints.courseUploadEndPoint ,data: myCourse);
-      response.statusCode != 200 ? debugPrint("====== Error here") : debugPrint("=== Successfully upload");
+      final Response response = await myDio.get(MyApiUrlEndpoints.courseGetEndPoint);
+      response.statusCode != 200 ? debugPrint("====== Error here") : debugPrint("=== Successfully get");
       return left(Success(value: response));
     } catch (e) {
 
       debugPrint("======== myCreateCourseApiService ||  uploadCourse method  ||  failed ========");
-      return right(Failure(exception: e));
+      return right(FailureMessage(failureMessage: e.toString()));
     } 
   }
 }

@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../Auth/shared/error/result.dart';
+import '../../../../../../core/error/result.dart';
 import '../../../../data/models/my_course.dart';
 
 part 'my_upload_course_state.dart';

@@ -1,5 +1,5 @@
 import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
-import 'package:courseup/features/Auth/shared/error/result.dart';
+import 'package:courseup/core/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

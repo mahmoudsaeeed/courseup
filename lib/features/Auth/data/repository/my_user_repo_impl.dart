@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:courseup/features/Auth/data/models/my_user.dart';
 import 'package:courseup/features/Auth/domain/entities/my_user_entity.dart';
 import 'package:courseup/features/Auth/domain/repository/my_user_repo.dart';
-import 'package:courseup/features/Auth/shared/error/result.dart';
+import 'package:courseup/core/error/result.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

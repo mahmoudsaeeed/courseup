@@ -1,4 +1,4 @@
-import 'package:courseup/features/Auth/shared/error/result.dart';
+import 'package:courseup/core/error/result.dart';
 import 'package:courseup/features/create_course/data/models/my_course.dart';
 import 'package:courseup/features/create_course/data/services/cloudinary_service.dart';
 import 'package:courseup/features/create_course/domain/repositories/my_create_course_repo_interface.dart';
